@@ -2,7 +2,7 @@
 
  
 
-##### Record data for calibration 
+##### Record data for calibration, print 9x6 openCV chessboard first  http://docs.opencv.org/master/pattern.png
 
 cd /home/shu/MYNT-EYE-S-SDK 
 
@@ -12,7 +12,7 @@ source wrappers/ros/devel/setup.bash
 
  
 
-##### Use the tool in the VINS-Mono to calibrate, print 9x6 openCV chessboard first  http://docs.opencv.org/master/pattern.png 
+##### Use the tool in the VINS-Mono to calibrate 
 
 cd /home/shu/catkin_ws/src/VINS-Mono/camera_model/calibration_test 
 

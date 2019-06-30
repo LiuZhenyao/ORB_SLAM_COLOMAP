@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "eigen": "cpp"
+        "eigen": "cpp",
+        "ostream": "cpp"
     }
 }

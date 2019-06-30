@@ -3,7 +3,10 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/usr/include/eigen3/Eigen",
+                "/usr/include/eigen3/Eigen",
+                "/usr/local/include/eigen3/Eigen"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

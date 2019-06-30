@@ -1,4 +1,3 @@
-#include <iostream>
 #include <read_binFile.h>
 
 int main() {

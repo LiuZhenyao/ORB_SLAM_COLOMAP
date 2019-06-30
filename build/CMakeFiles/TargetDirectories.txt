@@ -1,4 +1,0 @@
-/home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/build/CMakeFiles/rebuild_cache.dir
-/home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/build/CMakeFiles/read_binFile.dir
-/home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/build/CMakeFiles/edit_cache.dir
-/home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/build/CMakeFiles/main.dir

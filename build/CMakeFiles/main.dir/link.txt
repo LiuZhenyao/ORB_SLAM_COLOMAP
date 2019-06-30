@@ -1,1 +1,0 @@
-/usr/bin/g++-7  -g  -rdynamic CMakeFiles/main.dir/src/main.cpp.o  -o main libread_binFile.a 

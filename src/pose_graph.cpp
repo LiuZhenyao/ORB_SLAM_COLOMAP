@@ -112,6 +112,7 @@ void vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(int index, Eigen::Ve
     std::string file_path = IMAGES_TXT_SAVE_PATH + "images.txt";
     int index_num = index+1;
     std::string tmp;
+
     if (index_num < 10)
     {
         tmp = "00000" + std::to_string(index_num);
@@ -128,6 +129,11 @@ void vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(int index, Eigen::Ve
     {
         tmp = "00" + std::to_string(index_num);
     }
+    else if (index_num > 9999 && index_num < 100000)
+    {
+        tmp = "0" + std::to_string(index_num);
+    }
+
     std::string image_name = "IMG" + tmp + ".png";
     pFile = fopen(file_path.c_str(), "a");
     fprintf (pFile, "%d %f %f %f %f %f %f %f %d %s \n\n",

@@ -1,5 +1,5 @@
-add_library(read_binFile SHARED
-    read_binFile.h   
-    read_binFile.cpp)
+add_library(pose_graph SHARED
+    pose_graph.h   
+    pose_graph.cpp)
 
-target_include_directories(read_binFile PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+target_include_directories(pose_graph PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")

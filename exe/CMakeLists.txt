@@ -12,6 +12,6 @@ include_directories( ${EIGEN3_INCLUDE_DIR} )
 add_executable(main main.cpp)
 
 target_link_libraries(main
-    read_binFile
+    pose_graph
     ${OpenCV_LIBS}
     Eigen3::Eigen)

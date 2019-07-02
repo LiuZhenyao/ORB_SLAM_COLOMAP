@@ -14,16 +14,22 @@ namespace vins_PoseGraph_reader {
     void saveCameras_txt_in_COLMAP_format();
     void savePoints3D_txt_in_COLMAP_format();
 
-    // Define camera info for MYNT EYE S1030, calibration should be done beforehand
+    // Define camera info for MYNT EYE S1030
+    // Calibration should be done beforehand
     const int CAMERA_ID = 1; // just set index 1 to mynteye camera
-    const float fx = 440.85; // in pixel
-    const float fy = 440.68; // in pixel
-    const int cx = 354; // principle point position in pixel
-    const int cy = 233;
     const int IMG_WIDTH = 752;
     const int IMG_HEIGHT = 480;
-    const std::string CAMERA_MODEL = "SIMPLE_RADIAL"; //SIMPLE_RADIAL, SIMPLE_PINHOLE, PINHOLE 
-
+    const std::string CAMERA_MODEL = "SIMPLE_RADIAL"; //SIMPLE_RADIAL, SIMPLE_PINHOLE, PINHOLE, RADIAL, OPENCV
+    // Projection parameters
+    const float fx = 440.8503716053656; // in pixel
+    const float fy = 440.67694216951423;
+    const float cx = 354.173182391866; // principle point position in pixel
+    const float cy = 233.00424421090963;
+    // Distortion parameters
+    const float p1 = -0.00027894166759601926;
+    const float p2 = 0.0007775925641113786;
+    const float k1 = -0.3205125886805923;
+    const float k2 = 0.10861100855243255;
 
     // Global path
     const std::string POSE_GRAPH_SAVE_PATH = "/home/shu/catkin_ws/src/VINS-Mono/pose_graph/TEST_2/";
@@ -47,3 +53,6 @@ namespace vins_PoseGraph_reader {
 //         std::string save_file_path = "";
 // };
 
+namespace orbslam2_PoseGraph_reader {
+    
+}

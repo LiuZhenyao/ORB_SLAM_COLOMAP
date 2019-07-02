@@ -156,20 +156,70 @@ void vins_PoseGraph_reader::saveCameras_txt_in_COLMAP_format() {
     std::printf("cameras.txt saving... \n");
     std::string file_path = CAMERAS_TXT_SAVE_PATH + "cameras.txt";
     pFile = fopen(file_path.c_str(), "w");
-    if (CAMERA_MODEL == "PINHOLE") {
-        fprintf (pFile, "%d %s %d %d %.2f %.2f %d %d \n",
+    if (CAMERA_MODEL == "PINHOLE") 
+    {
+        // Pinhole camera model.
+        // No Distortion is assumed. Only focal length and principal point is modeled.
+        // Parameter list is expected in the following order:
+        //    fx, fy, cx, cy
+        // See https://en.wikipedia.org/wiki/Pinhole_camera_model
+        fprintf (pFile, "%d %s %d %d %f %f %f %f \n",
             CAMERA_ID, CAMERA_MODEL.c_str(), IMG_WIDTH, IMG_HEIGHT, fx, fy, cx, cy);
     }
-    else if (CAMERA_MODEL == "SIMPLE_RADIAL")
-    {   
-        const float some_param = 0.0177572;
-        fprintf (pFile, "%d %s %d %d %.2f %d %d %f\n",
-            CAMERA_ID, CAMERA_MODEL.c_str(), IMG_WIDTH, IMG_HEIGHT, fx, cx, cy, some_param);
-    }
-    else if (CAMERA_MODEL == "SIMPLE_PINHOLE")
+    else if (CAMERA_MODEL == "SIMPLE_PINHOLE") 
     {
-           fprintf (pFile, "%d %s %d %d %.2f %d %d \n",
-            CAMERA_ID, CAMERA_MODEL.c_str(), IMG_WIDTH, IMG_HEIGHT, fx, cx, cy);
+        // Simple Pinhole camera model.
+        // No Distortion is assumed. Only focal length and principal point is modeled.
+        // Parameter list is expected in the following order:
+        //   f, cx, cy
+        fprintf (pFile, "%d %s %d %d %f %f %f \n",
+        CAMERA_ID, CAMERA_MODEL.c_str(), IMG_WIDTH, IMG_HEIGHT, fx, cx, cy);
+    }
+    else if (CAMERA_MODEL == "SIMPLE_RADIAL") 
+    {
+        // Simple camera model with one focal length and one radial distortion parameter.
+        //
+        // This model is similar to the camera model that VisualSfM uses with the
+        // difference that the distortion here is applied to the projections and
+        // not to the measurements.
+        //
+        // Parameter list is expected in the following order:
+        //    f, cx, cy, k
+        const float k = 0.0177572;
+        fprintf (pFile, "%d %s %d %d %f %f %f %f\n",
+            CAMERA_ID, CAMERA_MODEL.c_str(), IMG_WIDTH, IMG_HEIGHT, fx, cx, cy, k);
+    }
+    else if (CAMERA_MODEL == "RADIAL")
+    {
+        // Simple camera model with one focal length and two radial distortion
+        // parameters.
+        //
+        // This model is equivalent to the camera model that Bundler uses
+        // (except for an inverse z-axis in the camera coordinate system).
+        //
+        // Parameter list is expected in the following order:
+        //
+        //    f, cx, cy, k1, k2
+        fprintf (pFile, "%d %s %d %d %f %f %f %f %f\n",
+            CAMERA_ID, CAMERA_MODEL.c_str(), IMG_WIDTH, IMG_HEIGHT, fx, cx, cy, k1, k2);
+    }
+    else if (CAMERA_MODEL == "OPENCV")
+    {
+        // OpenCV camera model.
+        //
+        // Based on the pinhole camera model. Additionally models radial and
+        // tangential distortion (up to 2nd degree of coefficients). Not suitable for
+        // large radial distortions of fish-eye cameras.
+        //
+        // Parameter list is expected in the following order:
+        //
+        //    fx, fy, cx, cy, k1, k2, p1, p2
+        //
+        // See
+        // http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html
+        fprintf (pFile, "%d %s %d %d %f %f %f %f %f %f %f %f\n",
+            CAMERA_ID, CAMERA_MODEL.c_str(), IMG_WIDTH, IMG_HEIGHT, 
+            fx, fy, cx, cy, k1, k2, p1, p2);
     }
     fclose(pFile);
 }

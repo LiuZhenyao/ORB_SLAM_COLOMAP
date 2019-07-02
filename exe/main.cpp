@@ -8,7 +8,5 @@ int main() {
     // vins_PoseGraph_reader::testFunc();
     vins_PoseGraph_reader::loadPoseGraph();
 
-
-
     return 0;
 }

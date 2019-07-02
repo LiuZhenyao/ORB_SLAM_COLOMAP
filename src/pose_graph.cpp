@@ -138,11 +138,11 @@ void vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(int index, Eigen::Ve
     pFile = fopen(file_path.c_str(), "a");
     fprintf (pFile, "%d %f %f %f %f %f %f %f %d %s \n\n",
                     index_num,
-                    VIO_Q.w(), VIO_Q.x(), VIO_Q.y(), VIO_Q.z(), 
-                    VIO_T.x(), VIO_T.y(), VIO_T.z(),
+                    // VIO_Q.w(), VIO_Q.x(), VIO_Q.y(), VIO_Q.z(), 
+                    // VIO_T.x(), VIO_T.y(), VIO_T.z(),
+                    PG_Q.w(), PG_Q.x(), PG_Q.y(), PG_Q.z(), 
+                    PG_T.x(), PG_T.y(), PG_T.z(),
                     CAMERA_ID, image_name.c_str()
-                    // PG_Q.w(), PG_Q.x(), PG_Q.y(), PG_Q.z(), 
-                    // PG_T.x(), PG_T.y(), PG_T.z()
                     );
     fclose(pFile);
 }

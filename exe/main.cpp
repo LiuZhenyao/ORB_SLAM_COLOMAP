@@ -4,9 +4,9 @@ int main() {
 
     std::cout << "MAIN FUNCTION RUNING" << std::endl;
 
-    // BinFile_reader test;
-    // vins_PoseGraph_reader::testFunc();
+    // testFunc();
     vins_PoseGraph_reader::loadPoseGraph();
+    // orbslam2_PoseGraph_reader::loadKeyFrames();
 
     return 0;
 }

@@ -61,8 +61,34 @@ void vins_PoseGraph_reader::loadPoseGraph()
         Eigen::Matrix<double, 8, 1 > loop_info;
         loop_info << loop_info_0, loop_info_1, loop_info_2, loop_info_3, loop_info_4, loop_info_5, loop_info_6, loop_info_7;
 
+        // the axis of COLMAP is differ from the one from VINS, rotate 90 deg around x axis
+        Eigen::Matrix3d R_x_;
+        Eigen::Matrix3d R_z_;
+        Eigen::Matrix3d R_y_;
+        Eigen::Vector3d VIO_T_;
+        Eigen::Vector3d PG_T_;
+        R_z_.row(0) << 0, -1, 0;
+        R_z_.row(1) << 1, 0, 0;
+        R_z_.row(2) << 0, 0, 1; 
+
+        R_x_.row(0) << 1, 0, 0;
+        R_x_.row(1) << 0, 0, -1;
+        R_x_.row(2) << 0, 1, 0;
+
+        R_y_.row(0) << 0, 0, -1;
+        R_y_.row(1) << 0, 1, 0;
+        R_y_.row(2) << 1, 0, 0; 
+        // std::cout << R_x_ << std::endl;
+
+        VIO_R = R_y_ * R_x_ * VIO_R;
+        PG_R = R_y_ * R_x_ * PG_R;
+        VIO_T_ = R_y_ * R_x_ * VIO_T;
+        PG_T_ = R_y_ * R_x_ * PG_T;
+        Eigen::Quaterniond VIO_Q_(VIO_R);
+        Eigen::Quaterniond PG_Q_(PG_R);
+
         // save images.txt for COLMAP
-        vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, VIO_T, PG_T, VIO_Q, PG_Q);
+        vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, VIO_T_, PG_T_, VIO_Q_, PG_Q_);
     }
     fclose (pFile);
 
@@ -150,6 +176,7 @@ std::string modify_img_name(int index_num)
     // This is necessary for COLMAP commandline "Reconstruct sparse/dense model from known camera poses"
     // Fix the bug when runging "colmap point_triangulator":
     //      Check failed: existing_image.Name() == image.second.Name() (17.JPG vs. 16.JPG)
+    // SO, the image will be saved like IMG000001, IMG000002 ...
 
     std::string temp;
 

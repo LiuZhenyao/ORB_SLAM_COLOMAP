@@ -94,7 +94,8 @@ void vins_PoseGraph_reader::loadPoseGraph()
         // Eigen::Quaterniond PG_Q_(PG_R);
 
 
-        //write the Quaternion parameters of transpose(R) and -transpose(R) * T
+        // write the Quaternion parameters of transpose(R) and -transpose(R) * T
+        // https://github.com/colmap/colmap/issues/434
         Eigen::Matrix3d R_new;
         R_new = PG_R.transpose();
         Eigen::Quaterniond PG_Q_(R_new);

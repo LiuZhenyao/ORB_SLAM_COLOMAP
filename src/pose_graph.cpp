@@ -1,3 +1,9 @@
+/* 
+Some code was extracted and modified from three open source project: 
+    VINS-Mono, COLMAP and ORBSLAM2;
+Writen by Fangwen Shu @DFKI
+*/
+
 #include "pose_graph.h"
 #include "mynteye.h"
 

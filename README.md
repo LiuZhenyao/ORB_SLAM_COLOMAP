@@ -16,7 +16,7 @@ All the functions were built according to the requirement of COLMAP tutorial
 https://colmap.github.io/faq.html#reconstruct-sparse-dense-model-from-known-camera-poses
 
 ----------------------------------------------------------------------------------------
-                                                Writen by Fangwen Shu
+                                                Written by Fangwen Shu
 
                                                 sfw811@hotmail.com
                                                 July 2019

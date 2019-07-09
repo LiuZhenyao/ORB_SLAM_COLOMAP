@@ -3,17 +3,23 @@ Part of code was extracted and modified from these open source project:
     1. VINS-Mono
     2. COLMAP
     3. ORBSLAM2
------------------------------------------------------------------------
+    4. MYNT-EYE-SDK, only left camera and IMU used (Monocular Visual-inertial)
+
+All the functions were built according to the requirement of COLMAP tutorial
+"Reconstruct sparse/dense model from known camera poses", see:
+https://colmap.github.io/faq.html#reconstruct-sparse-dense-model-from-known-camera-poses
+
+----------------------------------------------------------------------------------------
                                                 Writen by Fangwen Shu
 
-                                                Fangwen.Shu@dfki.de
+                                                sfw811@hotmail.com
                                                 July 2019
 */
 
 #include "pose_graph.h"
 #include "mynteye.h"
 
-// For VINS-Mono
+// Functions for reading pose graph from VINS-Mono
 void vins_PoseGraph_reader::loadPoseGraph() 
 {
     // Read pose graph data from *.bin, which was generated from VINS-Mono
@@ -139,7 +145,6 @@ void vins_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format()
     fclose(pFile);
 }
 
-// Global function utilities
 void testFunc() 
 {
     // Test Function, make sure your pakege has been installed properly

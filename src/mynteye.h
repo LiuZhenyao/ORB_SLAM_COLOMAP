@@ -16,8 +16,9 @@ namespace mynteye
     const float cx = 356.94016689742233; // principle point position in pixel
     const float cy = 231.07744714937556;
     // Distortion parameters, here, the image is already distorted!
+    // see ./config/mynteye_s_config.yaml
     const float p1 = 0;
     const float p2 = 0;
     const float k1 = 0;
-    const float k2 = 0;
+    const float k2 = 0;   
 }

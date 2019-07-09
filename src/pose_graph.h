@@ -15,7 +15,7 @@ namespace vins_PoseGraph_reader
     void savePoints3D_txt_in_COLMAP_format();   
 
     // Global path
-    const std::string POSE_GRAPH_SAVE_PATH = "/home/shu/catkin_ws/src/VINS-Mono/pose_graph/TEST_2/";
+    const std::string POSE_GRAPH_SAVE_PATH = "/home/shu/catkin_ws/src/VINS-Mono/pose_graph/TEST_bag5/";
     const std::string IMAGES_TXT_SAVE_PATH = "/home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/output/";
     const std::string CAMERAS_TXT_SAVE_PATH = "/home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/output/";
     const std::string POINTS3D_TXT_SAVE_PATH = "/home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/output/";

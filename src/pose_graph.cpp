@@ -68,18 +68,18 @@ void vins_PoseGraph_reader::loadPoseGraph()
         loop_info << loop_info_0, loop_info_1, loop_info_2, loop_info_3, loop_info_4, loop_info_5, loop_info_6, loop_info_7;
 
         // the axis of COLMAP is differ from the one from VINS, rotate 90 deg around x axis
-        // Eigen::Matrix3d R_x_;
-        // Eigen::Matrix3d R_z_;
-        // Eigen::Matrix3d R_y_;
+        Eigen::Matrix3d R_x_;
+        Eigen::Matrix3d R_z_;
+        Eigen::Matrix3d R_y_;
         // Eigen::Vector3d VIO_T_;
         // Eigen::Vector3d PG_T_;
-        // R_z_.row(0) << 0, -1, 0;
-        // R_z_.row(1) << 1, 0, 0;
-        // R_z_.row(2) << 0, 0, 1; 
+        R_z_.row(0) << 0, 1, 0;
+        R_z_.row(1) << -1, 0, 0;
+        R_z_.row(2) << 0, 0, 1; 
 
-        // R_x_.row(0) << 1, 0, 0;
-        // R_x_.row(1) << 0, 0, -1;
-        // R_x_.row(2) << 0, 1, 0;
+        R_x_.row(0) << 1, 0, 0;
+        R_x_.row(1) << 0, 0, 1;
+        R_x_.row(2) << 0, -1, 0;
 
         // R_y_.row(0) << 0, 0, -1;
         // R_y_.row(1) << 0, 1, 0;
@@ -98,10 +98,10 @@ void vins_PoseGraph_reader::loadPoseGraph()
         // https://github.com/colmap/colmap/issues/434
         Eigen::Matrix3d R_new;
         R_new = PG_R.transpose();
-        Eigen::Quaterniond PG_Q_(R_new);
+        Eigen::Quaterniond PG_Q_(R_z_*R_new);
 
         Eigen::Vector3d PG_T_;
-        PG_T_ = - R_new * PG_T;
+        PG_T_ = - R_z_*R_new * PG_T;
 
         // save images.txt for COLMAP
         vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, VIO_T, PG_T_, VIO_Q, PG_Q_);

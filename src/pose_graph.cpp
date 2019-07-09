@@ -1,7 +1,13 @@
 /* 
-Some code was extracted and modified from three open source project: 
-    VINS-Mono, COLMAP and ORBSLAM2;
-Writen by Fangwen Shu @DFKI
+Part of code was extracted and modified from these open source project: 
+    1. VINS-Mono
+    2. COLMAP
+    3. ORBSLAM2
+-----------------------------------------------------------------------
+                                                Writen by Fangwen Shu
+
+                                                Fangwen.Shu@dfki.de
+                                                July 2019
 */
 
 #include "pose_graph.h"
@@ -11,7 +17,6 @@ Writen by Fangwen Shu @DFKI
 void vins_PoseGraph_reader::loadPoseGraph() 
 {
     // Read pose graph data from *.bin, which was generated from VINS-Mono
-
     FILE * pFile;
     std::string file_path = POSE_GRAPH_SAVE_PATH + "pose_graph.txt";
     printf("lode pose graph from: %s \n", file_path.c_str());
@@ -67,44 +72,20 @@ void vins_PoseGraph_reader::loadPoseGraph()
         Eigen::Matrix<double, 8, 1 > loop_info;
         loop_info << loop_info_0, loop_info_1, loop_info_2, loop_info_3, loop_info_4, loop_info_5, loop_info_6, loop_info_7;
 
-        // the axis of COLMAP is differ from the one from VINS, rotate 90 deg around x axis
-        Eigen::Matrix3d R_x_;
+        // the coordinate axis of COLMAP is defined in a way differ from the one from VINS, rotate -90 deg around z axis
+        // write the Quaternion parameters of transpose(R) and -transpose(R) * T
+        // https://github.com/colmap/colmap/issues/434
         Eigen::Matrix3d R_z_;
-        Eigen::Matrix3d R_y_;
-        // Eigen::Vector3d VIO_T_;
-        // Eigen::Vector3d PG_T_;
         R_z_.row(0) << 0, 1, 0;
         R_z_.row(1) << -1, 0, 0;
         R_z_.row(2) << 0, 0, 1; 
 
-        R_x_.row(0) << 1, 0, 0;
-        R_x_.row(1) << 0, 0, 1;
-        R_x_.row(2) << 0, -1, 0;
-
-        // R_y_.row(0) << 0, 0, -1;
-        // R_y_.row(1) << 0, 1, 0;
-        // R_y_.row(2) << 1, 0, 0; 
-        // // std::cout << R_x_ << std::endl;
-
-        // VIO_R = R_y_ * R_x_ * VIO_R;
-        // PG_R = R_y_ * R_x_ * PG_R;
-        // VIO_T_ = R_y_ * R_x_ * VIO_T;
-        // PG_T_ = R_y_ * R_x_ * PG_T;
-        // Eigen::Quaterniond VIO_Q_(VIO_R);
-        // Eigen::Quaterniond PG_Q_(PG_R);
-
-
-        // write the Quaternion parameters of transpose(R) and -transpose(R) * T
-        // https://github.com/colmap/colmap/issues/434
-        Eigen::Matrix3d R_new;
-        R_new = PG_R.transpose();
-        Eigen::Quaterniond PG_Q_(R_z_*R_new);
-
+        Eigen::Quaterniond PG_Q_(R_z_ * PG_R.transpose());
         Eigen::Vector3d PG_T_;
-        PG_T_ = - R_z_*R_new * PG_T;
+        PG_T_ = - R_z_ * PG_R.transpose() * PG_T;
 
         // save images.txt for COLMAP
-        vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, VIO_T, PG_T_, VIO_Q, PG_Q_);
+        vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, PG_T_, PG_Q_);
     }
     fclose (pFile);
 
@@ -113,13 +94,12 @@ void vins_PoseGraph_reader::loadPoseGraph()
     vins_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format();
 }
 
-void vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(int index, Eigen::Vector3d VIO_T, Eigen::Vector3d PG_T, Eigen::Quaterniond VIO_Q, Eigen::Quaterniond PG_Q) 
+void vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(int index, Eigen::Vector3d PG_T, Eigen::Quaterniond PG_Q) 
 {
     // Save the images' pose in a txt file
     // Image list with two lines of data per image: 
     //      IMAGE_ID, QW, QX, QY, QZ, TX, TY, TZ, CAMERA_ID, NAME
-    //      POINTS2D[] as (X, Y, POINT3D_ID) <-- this line will be empty
-
+    //      POINTS2D[] as (X, Y, POINT3D_ID) !!!!!!attention <-- this line will be empty
     FILE *pFile;
     std::string file_path = IMAGES_TXT_SAVE_PATH + "images.txt";
     int index_num = index+1;
@@ -128,8 +108,6 @@ void vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(int index, Eigen::Ve
     pFile = fopen(file_path.c_str(), "a");
     fprintf (pFile, "%d %f %f %f %f %f %f %f %d %s \n\n",
                     index_num,
-                    // VIO_Q.w(), VIO_Q.x(), VIO_Q.y(), VIO_Q.z(), 
-                    // VIO_T.x(), VIO_T.y(), VIO_T.z(),
                     PG_Q.w(), PG_Q.x(), PG_Q.y(), PG_Q.z(), 
                     PG_T.x(), PG_T.y(), PG_T.z(),
                     mynteye::CAMERA_ID, image_name.c_str());
@@ -140,7 +118,6 @@ void vins_PoseGraph_reader::saveCameras_txt_in_COLMAP_format()
 {
     // Camera list with one line of data per camera: 
     //      CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[focal length in pixel, principal point at pixel location]
-
     FILE *pFile;
     std::printf("cameras.txt path: %s\n", CAMERAS_TXT_SAVE_PATH.c_str());
     std::printf("cameras.txt saving... \n");
@@ -154,13 +131,11 @@ void vins_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format()
 {
     // 3D point list with one line of data per point:
     // POINT3D_ID, X, Y, Z, R, G, B, ERROR, TRACK[] as (IMAGE_ID, POINT2D_IDX)
-
-    FILE *pFile; // This file should be empty in case no 3D points known
+    FILE *pFile; // !!!!!!attention, this file should be empty in case no 3D points record from SLAM
     std::printf("points3D.txt path: %s\n", POINTS3D_TXT_SAVE_PATH.c_str());
-    std::printf("points3D.txt saving... \n");
+    std::printf("points3D.txt should be empty! \n");
     std::string file_path = POINTS3D_TXT_SAVE_PATH + "points3D.txt";
     pFile = fopen(file_path.c_str(), "w");
-    // fprintf (pFile, "\n");
     fclose(pFile);
 }
 
@@ -168,9 +143,7 @@ void vins_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format()
 void testFunc() 
 {
     // Test Function, make sure your pakege has been installed properly
-
     std::cout << "TEST FUNCTION RUNING -- sample namespace" << std::endl;
-    
     cv::Mat image;
     image = cv::imread("/home/shu/Pictures/1.png", 1);
     cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
@@ -183,17 +156,15 @@ void testFunc()
     m(0,1) = -1;
     m(1,1) = m(1,0) + m(0,1);
     std::cout << m << std::endl; // if Call Eigen sucess!
-
     std::cout << "TEST PASS!" << std::endl;
 }
 
 std::string modify_img_name(int index_num) 
 {   
     // This is necessary for COLMAP commandline "Reconstruct sparse/dense model from known camera poses"
-    // Fix the bug when runging "colmap point_triangulator":
+    // Fix the bug when running "colmap point_triangulator":
     //      Check failed: existing_image.Name() == image.second.Name() (17.JPG vs. 16.JPG)
     // SO, the image will be saved like IMG000001, IMG000002 ...
-
     std::string temp;
 
     if (index_num < 10) 
@@ -229,7 +200,6 @@ void write_camera_model(FILE *pFile, const int& camera_id, const std::string& ca
         // Parameter list is expected in the following order:
         //    fx, fy, cx, cy
         // See https://en.wikipedia.org/wiki/Pinhole_camera_model
-
         fprintf (pFile, "%d %s %d %d %f %f %f %f \n", camera_id, camera_model.c_str(), mynteye::IMG_WIDTH, mynteye::IMG_HEIGHT, 
             mynteye::fx, mynteye::fy, mynteye::cx, mynteye::cy);
     }
@@ -239,7 +209,6 @@ void write_camera_model(FILE *pFile, const int& camera_id, const std::string& ca
         // No Distortion is assumed. Only focal length and principal point is modeled.
         // Parameter list is expected in the following order:
         //   f, cx, cy
-
         fprintf (pFile, "%d %s %d %d %f %f %f \n",
         camera_id, camera_model.c_str(), mynteye::IMG_WIDTH, mynteye::IMG_HEIGHT, mynteye::fx, mynteye::cx, mynteye::cy);
     }
@@ -253,7 +222,6 @@ void write_camera_model(FILE *pFile, const int& camera_id, const std::string& ca
         //
         // Parameter list is expected in the following order:
         //    f, cx, cy, k
-
         const float k = 0.0177572;
         fprintf (pFile, "%d %s %d %d %f %f %f %f\n",
             camera_id, camera_model.c_str(), mynteye::IMG_WIDTH, mynteye::IMG_HEIGHT, mynteye::fx, mynteye::cx, mynteye::cy, k);
@@ -269,7 +237,6 @@ void write_camera_model(FILE *pFile, const int& camera_id, const std::string& ca
         // Parameter list is expected in the following order:
         //
         //    f, cx, cy, k1, k2
-
         fprintf (pFile, "%d %s %d %d %f %f %f %f %f\n",
             camera_id, camera_model.c_str(), mynteye::IMG_WIDTH, mynteye::IMG_HEIGHT, mynteye::fx, mynteye::cx, mynteye::cy, mynteye::k1, mynteye::k2);
     }
@@ -287,7 +254,6 @@ void write_camera_model(FILE *pFile, const int& camera_id, const std::string& ca
         //
         // See
         // http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html
-
         fprintf (pFile, "%d %s %d %d %f %f %f %f %f %f %f %f\n",
             camera_id, camera_model.c_str(), mynteye::IMG_WIDTH, mynteye::IMG_HEIGHT, 
             mynteye::fx, mynteye::fy, mynteye::cx, mynteye::cy, mynteye::k1, mynteye::k2, mynteye::p1, mynteye::p2);

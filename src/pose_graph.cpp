@@ -1,21 +1,3 @@
-/* 
-Part of code was extracted and modified from these open source project: 
-    1. VINS-Mono
-    2. COLMAP
-    3. ORBSLAM2
-    4. MYNT-EYE-SDK, only left camera and IMU used (Monocular Visual-inertial)
-
-All the functions were built according to the requirement of COLMAP tutorial
-"Reconstruct sparse/dense model from known camera poses", see:
-https://colmap.github.io/faq.html#reconstruct-sparse-dense-model-from-known-camera-poses
-
-----------------------------------------------------------------------------------------
-                                                Writen by Fangwen Shu
-
-                                                sfw811@hotmail.com
-                                                July 2019
-*/
-
 #include "pose_graph.h"
 #include "mynteye.h"
 

@@ -213,21 +213,15 @@ def plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, z
 
 
 if __name__ == "__main__":
-    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_12_0955_54_perceptionLog_StructSensorSF3000.csv"
-    # csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_1100_45_perceptionLog_StructSensorSF3000.csv"
-    # csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_1102_46_perceptionLog_StructSensorSF3000.csv"
-    PVT_msg, INS_msg, IMU_msg = read_gps_data(csv_file_path)
+    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2046_57_perceptionLog_StructSensorSF3000.csv"
 
+    PVT_msg, INS_msg, IMU_msg = read_gps_data(csv_file_path)
     # PVT
     timestamps_pvt, easting, northing, velocityEasting, velocityNorthing = sparse_PVT_msg(PVT_msg)
     plot_PVT_msg(timestamps_pvt, easting, northing, velocityEasting, velocityNorthing)
-
-
     # INS
     timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate, rollStdDev, pitchStdDev, yawStdDev = sparse_INS_msg(INS_msg)
     plot_INS_msg(timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate)
-
-
     # IMU
     timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate = sparse_IMU_msg(IMU_msg)
     plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate)

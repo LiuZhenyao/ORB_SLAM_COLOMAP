@@ -71,7 +71,7 @@ void vins_PoseGraph_reader::loadPoseGraph()
         Eigen::Quaterniond PG_Q_(R_z_ * PG_R.transpose());
         Eigen::Vector3d PG_T_;
         PG_T_ = - R_z_ * PG_R.transpose() * PG_T;
-
+        
         // save images.txt for COLMAP
         vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, PG_T_, PG_Q_);
     }

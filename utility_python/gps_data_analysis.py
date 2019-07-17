@@ -194,17 +194,17 @@ def plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, z
     plt.subplot(311)
     plt.plot(timestamps_imu, xGyroRate, label='xGyroRate')
     plt.title('IMU gyroscope measurement (body frame)')
-    plt.ylabel('xGyroRate []')
+    plt.ylabel('xGyroRate [deg/s]')
     plt.legend(loc='upper right')
     plt.grid(True)
     plt.subplot(312)
     plt.plot(timestamps_imu, yGyroRate, label='yGyroRate')
-    plt.ylabel('yGyroRate []')
+    plt.ylabel('yGyroRate [deg/s]')
     plt.legend(loc='upper right')
     plt.grid(True)
     plt.subplot(313)
     plt.plot(timestamps_imu, zGyroRate, label='zGyroRate')
-    plt.ylabel('zGyroRate []')
+    plt.ylabel('zGyroRate [deg/s]')
     plt.legend(loc='upper right')
     plt.xlabel('Timestamps [posix format]')
     plt.grid(True)
@@ -213,18 +213,24 @@ def plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, z
 
 
 if __name__ == "__main__":
-    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2046_57_perceptionLog_StructSensorSF3000.csv"
+    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
 
     PVT_msg, INS_msg, IMU_msg = read_gps_data(csv_file_path)
-    # PVT
+    # PVT (Position, Velocity, and Time in navigation systems, especially satellite-based)
     timestamps_pvt, easting, northing, velocityEasting, velocityNorthing = sparse_PVT_msg(PVT_msg)
-    plot_PVT_msg(timestamps_pvt, easting, northing, velocityEasting, velocityNorthing)
     # INS
     timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate, rollStdDev, pitchStdDev, yawStdDev = sparse_INS_msg(INS_msg)
-    plot_INS_msg(timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate)
     # IMU
     timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate = sparse_IMU_msg(IMU_msg)
+
+    plot_PVT_msg(timestamps_pvt, easting, northing, velocityEasting, velocityNorthing)
+    plot_INS_msg(timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate)
     plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate)
+
+
+
+
+
 
 
 

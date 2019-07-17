@@ -22,7 +22,7 @@ def read_gps_data(csv_file_path):
                     IMU_msg.append(line)
                 line_count += 1
             if line_count < 3:
-                print (line)  # string
+                # print (line)  # string
                 line_count += 1
 
     return PVT_msg, INS_msg, IMU_msg
@@ -36,6 +36,7 @@ def sparse_PVT_msg(PVT_msg):
     altitude = []
     velocityEasting = []
     velocityNorthing = []
+    velocityUp = []
     for i in range(len(PVT_msg)):
         tmp = PVT_msg[i].split(",")
         timestamps.append(np.float(tmp[0]))
@@ -51,8 +52,9 @@ def sparse_PVT_msg(PVT_msg):
         altitude.append(np.float(tmp[10]))
         velocityEasting.append(np.float(tmp[15]))
         velocityNorthing.append(np.float(tmp[16]))
+        velocityUp.append(np.float(tmp[17]))
 
-    return timestamps, easting, northing, velocityEasting, velocityNorthing
+    return timestamps, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp
 
 def plot_PVT_msg(timestamps_pvt, easting, northing, velocityEasting, velocityNorthing):
     plt.figure(1)
@@ -217,7 +219,7 @@ if __name__ == "__main__":
 
     PVT_msg, INS_msg, IMU_msg = read_gps_data(csv_file_path)
     # PVT (Position, Velocity, and Time in navigation systems, especially satellite-based)
-    timestamps_pvt, easting, northing, velocityEasting, velocityNorthing = sparse_PVT_msg(PVT_msg)
+    timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = sparse_PVT_msg(PVT_msg)
     # INS
     timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate, rollStdDev, pitchStdDev, yawStdDev = sparse_INS_msg(INS_msg)
     # IMU

@@ -136,15 +136,17 @@ with open(pose_graph_file, 'r') as fp:
 
 fig = plt.figure()
 plt.plot(PG_Tx, PG_Ty, label='VINS-pose-graph')
-plt.plot(PG_Tx[0], PG_Ty[0], 'rx', label='(VINS) start point')
 plt.legend()
 # ax.plot(GPS_position_in_mynteye_frame[0,:].tolist()[0], GPS_position_in_mynteye_frame[1,:].tolist()[0], GPS_position_in_mynteye_frame[2,:].tolist()[0], label='GPS-trajectory')
 plt.plot(X, Y, '--', label='GPS')
+plt.plot(PG_Tx[0], PG_Ty[0], 'rx', label='(VINS) start point')
+plt.legend()
 plt.plot(X[0], Y[0], 'bx', label='(GPS) start point')
+plt.legend()
 plt.grid(True)
 plt.xlabel('x (easting) [m]')
 plt.ylabel('y (northing) [m]')
-plt.legend()
+
 plt.title('2D trajectory of GPS and pose graph (local frame of GPS)')
 # plt.show()
 

@@ -14,16 +14,9 @@ timestamps, easting, northing, altitude, velocityEasting, velocityNorthing, velo
 X = [(item - easting[0]) for item in easting]
 Y = [(item - northing[0]) for item in northing]
 Z = [(item - altitude[0]) for item in altitude]
-#
-# fig = plt.figure()
-# ax = fig.gca(projection='3d')
-# ax.plot(easting, northing, altitude, label='GPS')
-# ax.legend()
-# ax.set_xlabel('X')
-# ax.set_ylabel('Y')
-# plt.show()
 
-# GPS_position = np.zeros((4, len(X)))
+
+# GPS_position = np.zeros((3, len(X)))
 # GPS_position[0, :] = np.asmatrix(X)
 # GPS_position[1, :] = np.asmatrix(Y)
 # GPS_position[2, :] = np.asmatrix(Z)
@@ -86,24 +79,14 @@ with open(pose_graph_file, 'r') as fp:
         Ty = np.float(temp[i].split(" ")[6])
         Tz = np.float(temp[i].split(" ")[7])
 
-        # PG_Tx.append(Tx)
-        # PG_Ty.append(Ty)
-        # PG_Tz.append(Tz)
-
-        # PG_Qw = np.float(temp[i].split(" ")[12])
-        # PG_Qx = np.float(temp[i].split(" ")[13])
-        # PG_Qy = np.float(temp[i].split(" ")[14])
-        # PG_Qz = np.float(temp[i].split(" ")[15])
-        #
-        # q = np.quaternion(PG_Qw, PG_Qx, PG_Qy, PG_Qz)
-        # r = quaternion.as_rotation_matrix(q)
-        # #
         PG_T = np.matrix([[Tx],
                           [Ty],
                           [Tz]])
+
         Ry_minus90 = np.matrix([[0, 0, -1],
                                 [0, 1, 0],
                                 [1, 0, 0]])
+
         Rz_minus90 = np.matrix([[0, 1, 0],
                            [-1, 0, 0],
                            [0, 0, 1]])
@@ -117,22 +100,7 @@ with open(pose_graph_file, 'r') as fp:
         PG_Ty.append(PG_T_[1,0])
         PG_Tz.append(PG_T_[2,0])
 
-# fig = plt.figure(3)
-# ax = fig.gca(projection='3d')
-# ax.plot(PG_Tx, PG_Ty, PG_Tz, label='VINS-pose-graph')
-# ax.legend()
-# ax.set_xlabel('x')
-# ax.set_ylabel('y')
-# plt.show()
-#
-
-# mynteye_position = np.zeros((4, len(PG_Tx)))
-# mynteye_position[0, :] = np.asmatrix(PG_Tx)
-# mynteye_position[1, :] = np.asmatrix(PG_Ty)
-# mynteye_position[2, :] = np.asmatrix(PG_Tz)
-# mynteye_position[3,:] = 1.0
-
-
+#-------------------------------------------------------------------------------------------------#
 
 fig = plt.figure()
 plt.plot(PG_Tx, PG_Ty, label='VINS-pose-graph')

@@ -14,7 +14,7 @@ void vins_PoseGraph_reader::loadPoseGraph()
     pFile = fopen (file_path.c_str(),"r");
     if (pFile == NULL)
     {
-        printf("lode pose graph error: wrong pose graph path or no pose graph available \n");
+        printf("load pose graph error: wrong pose graph path or no pose graph available \n");
         return;
     }
     int index;

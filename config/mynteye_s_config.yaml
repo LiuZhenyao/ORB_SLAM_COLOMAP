@@ -39,20 +39,20 @@ extrinsicRotation: !!opencv-matrix
    # data: [-0.00323751, -0.99997598, -0.00612781,
    #         0.99977854, -0.00336417,  0.02077387, 
    #         -0.02079398, -0.0060592 ,  0.99976542]
-   data: [-0.0056968, -0.99998104,  0.00233794,
-          0.99995663, -0.00567946,  0.00738157,
-          -0.00736815,  0.00237989,  0.99997002]
+   data: [-0.00385434, -0.99999075,  0.00190993,
+          0.9999665,  -0.00384044,  0.00722804,
+          -0.00722064,  0.00193773,  0.99997205]
 #Translation from camera frame to imu frame, imu^T_cam
 extrinsicTranslation: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
    # data: [0.00036127, -0.04229565, 0.02348288]
-   data: [0.00407226, -0.04181887, 0.02579003]
+   data: [0.00189856, -0.04274613, 0.02148916]
 
 #feature traker paprameters
-max_cnt: 150            # max feature number in feature tracking
-min_dist: 30            # min distance between two features 
+max_cnt: 400  #150          # max feature number in feature tracking
+min_dist: 20  #30         # min distance between two features 
 freq: 10                # frequence (Hz) of publish tracking result. At least 10Hz for good estimation. If set 0, the frequence will be same as raw image 
 F_threshold: 1.0        # ransac threshold (pixel)
 show_track: 1           # publish tracking image as topic
@@ -76,7 +76,7 @@ gyr_w: 2.377076607025522e-05       # gyroscope bias random work noise standard d
 #acc_w: 5.3271e-02        # accelerometer bias random work noise standard deviation.  #0.02
 #gyr_w: 5.5379e-05        # gyroscope bias random work noise standard deviation.     #4.0e-5
 
-g_norm: 9.80619653 #9.81007     # gravity magnitude
+g_norm: 9.8063822 #9.81007     # gravity magnitude
 
 #loop closure parameters
 loop_closure: 1                    # start loop closure
@@ -86,7 +86,7 @@ pose_graph_save_path: "/home/shu/catkin_ws/src/VINS-Mono/pose_graph/TEST/" # sav
 
 #unsynchronization parameters
 estimate_td: 1                      # online estimate time offset between camera and imu
-td: 0.006910471976301208            # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
+td: 0.006964262919379323            # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
 
 #rolling shutter parameters
 rolling_shutter: 0                  # 0: global shutter camera, 1: rolling shutter camera

@@ -4,13 +4,7 @@ from numpy.linalg import inv
 
 # state vector and co-variance matrix: y_hat = [x, y, z, qw, qx, qy, qz]^T, 7x1
 y_hat= np.matrix([[0, 0, 0, qw_0, qx_0, qy_0, qz_0]], np.float).transpose()  # initial state vector
-Q_yhat_yhat = np.matrix([[0.1^2, 0, 0, 0, 0, 0, 0],
-                          [0, 0.1^2, 0, 0, 0, 0, 0],
-                          [0, 0, 0.1^2, 0, 0, 0, 0],
-                          [0, 0, 0, 0.1^2, 0, 0, 0],
-                          [0, 0, 0, 0, 0.1^2, 0, 0],
-                          [0, 0, 0, 0, 0, 0.1^2, 0],
-                          [0, 0, 0, 0, 0, 0, 0.1^2]], np.float)  # 7x7
+Q_yhat_yhat = np.matrix([], np.float)  # 7x7
 
 # transiation matrix
 T = np.identity(7, np.float)  # 7x7

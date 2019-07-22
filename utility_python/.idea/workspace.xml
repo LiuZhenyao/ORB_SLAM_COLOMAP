@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/KalmanFilter_simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/KalmanFilter_simple.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gps_data_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/gps_data_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trajectroy_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/trajectroy_analysis.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1311">
-              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state relative-caret-position="72">
+              <caret line="242" column="18" selection-start-line="242" selection-start-column="4" selection-end-line="242" selection-end-column="18" />
               <folding>
                 <element signature="e#68#86#0" expanded="true" />
               </folding>
@@ -25,10 +27,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/KalmanFilter_simple.py">
+        <entry file="file://$PROJECT_DIR$/trajectroy_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="177">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -37,10 +39,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trajectroy_analysis.py">
+        <entry file="file://$PROJECT_DIR$/KalmanFilter_simple.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="28" />
+            <state relative-caret-position="703">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,13 +67,13 @@
       <list>
         <option value="$PROJECT_DIR$/gps_data_analysis_2.py" />
         <option value="$PROJECT_DIR$/gps_data_pandas_read.py" />
+        <option value="$PROJECT_DIR$/KalmanFilter_simple.py" />
         <option value="$PROJECT_DIR$/gps_data_analysis.py" />
         <option value="$PROJECT_DIR$/trajectroy_analysis.py" />
-        <option value="$PROJECT_DIR$/KalmanFilter_simple.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="67" />
     <option name="y" value="25" />
     <option name="width" value="1853" />
@@ -114,7 +119,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.gps_data_analysis">
+  <component name="RunManager" selected="Python.trajectroy_analysis">
     <configuration name="gps_data_analysis" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="utility" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -185,15 +190,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1175" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24808744" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.24808744" />
+      <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.15200765" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42351815" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39961758" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -201,7 +206,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3298279" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.458891" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.20172085" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -247,25 +252,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1311">
-          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        <state relative-caret-position="72">
+          <caret line="242" column="18" selection-start-line="242" selection-start-column="4" selection-end-line="242" selection-end-column="18" />
           <folding>
             <element signature="e#68#86#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trajectroy_analysis.py">
+    <entry file="file://$PROJECT_DIR$/KalmanFilter_simple.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="28" />
+        <state relative-caret-position="703">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KalmanFilter_simple.py">
+    <entry file="file://$PROJECT_DIR$/trajectroy_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        <state relative-caret-position="177">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

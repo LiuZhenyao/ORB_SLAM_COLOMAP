@@ -8,7 +8,7 @@ import quaternion
 
 csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
 PVT_msg, INS_msg, IMU_msg = gps_data_analysis.read_gps_data(csv_file_path)
-timestamps, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = gps_data_analysis.sparse_PVT_msg(PVT_msg)
+timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = gps_data_analysis.sparse_PVT_msg(PVT_msg)
 
 # Set first measurement of GPS as origin point
 X = [(item - easting[0]) for item in easting]
@@ -65,19 +65,21 @@ Z = [(item - altitude[0]) for item in altitude]
 
 # read pose graph
 pose_graph_file = "/home/shu/catkin_ws/src/VINS-Mono/pose_graph/TEST_3/pose_graph.txt"
+timestamps_pg = []
+PG_Tx = []
+PG_Ty = []
+PG_Tz = []
 with open(pose_graph_file, 'r') as fp:
     temp = []
     for line in fp:
         # print(line)
         temp.append(line)
 
-    PG_Tx = []
-    PG_Ty = []
-    PG_Tz = []
     for i in range(len(temp)):
-        Tx = np.float(temp[i].split(" ")[5])
-        Ty = np.float(temp[i].split(" ")[6])
-        Tz = np.float(temp[i].split(" ")[7])
+        timestamps_pg.append(np.float(temp[i].split(" ")[2]))
+        Tx = np.float(temp[i].split(" ")[6])
+        Ty = np.float(temp[i].split(" ")[7])
+        Tz = np.float(temp[i].split(" ")[8])
 
         PG_T = np.matrix([[Tx],
                           [Ty],
@@ -86,15 +88,15 @@ with open(pose_graph_file, 'r') as fp:
         Ry_minus90 = np.matrix([[0, 0, -1],
                                 [0, 1, 0],
                                 [1, 0, 0]])
-
-        Rz_minus90 = np.matrix([[0, 1, 0],
-                           [-1, 0, 0],
-                           [0, 0, 1]])
+        #
+        # Rz_minus90 = np.matrix([[0, 1, 0],
+        #                    [-1, 0, 0],
+        #                    [0, 0, 1]])
         # Rx_minus30 = np.matrix([[1, 0, 0],
-        #                        [0, np.cos(-30*pi/180), -np.sin(-30*pi/180)],
-        #                        [0, np.sin(-30*pi/180), np.cos(-30*pi/180)]])
+        #                        [0, np.cos(30*pi/180), -np.sin(30*pi/180)],
+        #                        [0, np.sin(30*pi/180), np.cos(30*pi/180)]])
 
-        PG_T_ = Rz_minus90 * Ry_minus90 * PG_T
+        PG_T_ = PG_T
         #
         PG_Tx.append(PG_T_[0,0])
         PG_Ty.append(PG_T_[1,0])
@@ -134,6 +136,13 @@ ax.set_ylabel('y (northing) [m]')
 ax.set_zlabel('z (altitude) [m]')
 ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
 ax.autoscale()
+
+plt.figure()
+plt.subplot(211)
+plt.plot(timestamps_pvt, X)
+plt.subplot(212)
+plt.plot(timestamps_pg, PG_Tx)
+
 plt.show()
 
 t = [PG_Tx[0] - X[0], PG_Ty[0] - Y [0], PG_Tz[0] - Z[0]]

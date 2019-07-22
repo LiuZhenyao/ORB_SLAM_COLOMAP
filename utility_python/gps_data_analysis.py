@@ -56,8 +56,8 @@ def sparse_PVT_msg(PVT_msg):
 
     return timestamps, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp
 
-def plot_PVT_msg(timestamps_pvt, easting, northing, velocityEasting, velocityNorthing):
-    plt.figure(1)
+def plot_PVT_msg(timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing):
+    plt.figure()
     plt.plot(easting, northing, 'g', label='gps')
     plt.plot(easting[0],northing[0], 'rx', label='start point')
     plt.plot(easting[-1],northing[-1], 'bx', label='end point')
@@ -67,7 +67,28 @@ def plot_PVT_msg(timestamps_pvt, easting, northing, velocityEasting, velocityNor
     plt.ylabel('Northing [m]')
     plt.legend(loc='upper right')
 
-    plt.figure(2)
+    plt.figure()
+    plt.subplot(311)
+    plt.plot(timestamps_pvt, easting, label='easting')
+    plt.xlabel('Timestamps [posix format]')
+    plt.ylabel('Easting [m]')
+    plt.grid(True)
+    plt.legend(loc='upper right')
+    plt.subplot(312)
+    plt.plot(timestamps_pvt, northing, label='northing')
+    plt.xlabel('Timestamps [posix format]')
+    plt.ylabel('Northing [m]')
+    plt.grid(True)
+    plt.legend(loc='upper right')
+    plt.subplot(313)
+    plt.plot(timestamps_pvt, altitude, label='altitude')
+    plt.xlabel('Timestamps [posix format]')
+    plt.ylabel('Altitude [m]')
+    plt.grid(True)
+    plt.legend(loc='upper right')
+
+
+    plt.figure()
     plt.plot(timestamps_pvt, velocityNorthing, 'b', label='northing')
     plt.plot(timestamps_pvt, velocityEasting, 'r', label='easting')
     plt.title('Velocity of the cart')
@@ -108,7 +129,7 @@ def sparse_INS_msg(INS_msg):
     return timestamps, roll, pitch, yaw, rollRate, pitchRate, yawRate, rollStdDev, pitchStdDev, yawStdDev
 
 def plot_INS_msg(timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate):
-    plt.figure(3)
+    plt.figure()
     plt.subplot(311)
     plt.plot(timestamps_ins, roll, label='roll')
     plt.title('GPS angular measurement (body frame)')
@@ -127,7 +148,7 @@ def plot_INS_msg(timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate)
     plt.xlabel('Timestamps [posix format]')
     plt.grid(True)
 
-    plt.figure(4)
+    plt.figure()
     plt.subplot(311)
     plt.plot(timestamps_ins, rollRate, label='rollRate')
     plt.title('GPS angular rate measurement (body frame)')
@@ -173,7 +194,7 @@ def sparse_IMU_msg(IMU_msg):
     return timestamps, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate
 
 def plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate):
-    plt.figure(5)
+    plt.figure()
     plt.subplot(311)
     plt.plot(timestamps_imu, xAccel, label='xAccel')
     plt.title('IMU acceleration measurement (body frame)')
@@ -192,7 +213,7 @@ def plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, z
     plt.xlabel('Timestamps [posix format]')
     plt.grid(True)
 
-    plt.figure(6)
+    plt.figure()
     plt.subplot(311)
     plt.plot(timestamps_imu, xGyroRate, label='xGyroRate')
     plt.title('IMU gyroscope measurement (body frame)')
@@ -225,7 +246,7 @@ if __name__ == "__main__":
     # IMU
     timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate = sparse_IMU_msg(IMU_msg)
 
-    plot_PVT_msg(timestamps_pvt, easting, northing, velocityEasting, velocityNorthing)
+    plot_PVT_msg(timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing)
     plot_INS_msg(timestamps_ins, roll, pitch, yaw, rollRate, pitchRate, yawRate)
     plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, zGyroRate)
 

@@ -1,10 +1,11 @@
 #include "pose_graph.h"
 #include "mynteye.h"
+#include "JohnDeere_Mono.h"
 
 // Functions for reading pose graph from VINS-Mono
 void vins_PoseGraph_reader::loadPoseGraph() 
 {
-    // Read pose graph data from *.bin, which was generated from VINS-Mono
+    // Read pose graph data from *.txt, which was generated from VINS-Mono
     FILE * pFile;
     std::string file_path = POSE_GRAPH_SAVE_PATH + "pose_graph.txt";
     printf("lode pose graph from: %s \n", file_path.c_str());
@@ -40,25 +41,15 @@ void vins_PoseGraph_reader::loadPoseGraph()
                         &loop_info_4, &loop_info_5, &loop_info_6, &loop_info_7,
                         &keypoints_num) != EOF) 
     {
-        cv::Mat image;
-        std::string image_path, descriptor_path;
         Eigen::Vector3d VIO_T(VIO_Tx, VIO_Ty, VIO_Tz);
         Eigen::Vector3d PG_T(PG_Tx, PG_Ty, PG_Tz);
-        Eigen::Quaterniond VIO_Q;
-        VIO_Q.w() = VIO_Qw;
-        VIO_Q.x() = VIO_Qx;
-        VIO_Q.y() = VIO_Qy;
-        VIO_Q.z() = VIO_Qz;
         Eigen::Quaterniond PG_Q;
         PG_Q.w() = PG_Qw;
         PG_Q.x() = PG_Qx;
         PG_Q.y() = PG_Qy;
         PG_Q.z() = PG_Qz;
-        Eigen::Matrix3d VIO_R, PG_R;
-        VIO_R = VIO_Q.toRotationMatrix();
+        Eigen::Matrix3d PG_R;
         PG_R = PG_Q.toRotationMatrix();
-        Eigen::Matrix<double, 8, 1 > loop_info;
-        loop_info << loop_info_0, loop_info_1, loop_info_2, loop_info_3, loop_info_4, loop_info_5, loop_info_6, loop_info_7;
 
         // the coordinate axis of COLMAP is defined in a way differ from the one from VINS, rotate -90 deg around z axis
         // write the Quaternion parameters of transpose(R) and -transpose(R) * T
@@ -111,7 +102,7 @@ void vins_PoseGraph_reader::saveCameras_txt_in_COLMAP_format()
     std::printf("cameras.txt saving... \n");
     std::string file_path = CAMERAS_TXT_SAVE_PATH + "cameras.txt";
     pFile = fopen(file_path.c_str(), "w");
-    write_camera_model(pFile, mynteye::CAMERA_ID, mynteye::CAMERA_MODEL);
+    write_camera_model_mynteye(pFile, mynteye::CAMERA_ID, mynteye::CAMERA_MODEL);
     fclose(pFile);
 }
 
@@ -178,7 +169,7 @@ std::string modify_img_name(int index_num)
     return temp;
 }
 
-void write_camera_model(FILE *pFile, const int& camera_id, const std::string& camera_model) 
+void write_camera_model_mynteye(FILE *pFile, const int& camera_id, const std::string& camera_model) 
 {
     if (camera_model == "PINHOLE") 
     {
@@ -247,3 +238,123 @@ void write_camera_model(FILE *pFile, const int& camera_id, const std::string& ca
     }
 }
 
+void write_camera_model_JD(FILE *pFile, const int& camera_id, const std::string& camera_model) 
+{
+    if (camera_model == "OPENCV") 
+    {
+        // OpenCV camera model.
+        //
+        // Based on the pinhole camera model. Additionally models radial and
+        // tangential distortion (up to 2nd degree of coefficients). Not suitable for
+        // large radial distortions of fish-eye cameras.
+        //
+        // Parameter list is expected in the following order:
+        //
+        //    fx, fy, cx, cy, k1, k2, p1, p2
+        //
+        // See
+        // http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html
+        fprintf (pFile, "%d %s %d %d %f %f %f %f %f %f %f %f\n",
+            camera_id, camera_model.c_str(), JohnDeere_Mono::IMG_WIDTH, JohnDeere_Mono::IMG_HEIGHT, 
+            JohnDeere_Mono::fx, JohnDeere_Mono::fy, JohnDeere_Mono::cx, JohnDeere_Mono::cy, JohnDeere_Mono::k1, JohnDeere_Mono::k2, JohnDeere_Mono::p1, JohnDeere_Mono::p2);
+    }
+}
+
+void orbslam2_PoseGraph_reader::loadPoseGraph()
+{
+    // Read pose graph data from *.txt, which was generated from ORB-SLAM2
+    FILE * pFile;
+    std::string file_path = POSE_GRAPH_SAVE_PATH + "KeyFrameTrajectory.txt";
+    printf("lode pose graph from: %s \n", file_path.c_str());
+    printf("pose graph loading...\n");
+    std::printf("images.txt path: %s\n", IMAGES_TXT_SAVE_PATH.c_str());
+    std::printf("images.txt saving... \n");
+    pFile = fopen (file_path.c_str(),"r");
+    if (pFile == NULL)
+    {
+        printf("load pose graph error: wrong pose graph path or no pose graph available \n");
+        return;
+    }
+
+    int index = 0;
+    double time_stamp;
+    double PG_Tx, PG_Ty, PG_Tz;
+    double PG_Qw, PG_Qx, PG_Qy, PG_Qz;
+    // TUM format:
+    // The format of each line is 'timestamp tx ty tz qx qy qz qw' 
+
+    while (fscanf(pFile,"%lf %lf %lf %lf %lf %lf %lf %lf", 
+                        &time_stamp,  
+                        &PG_Tx, &PG_Ty, &PG_Tz, 
+                        &PG_Qx, &PG_Qy, &PG_Qz, &PG_Qw)!= EOF )
+    {
+        cv::Mat image;
+        std::string image_path, descriptor_path;
+        Eigen::Vector3d PG_T(PG_Tx, PG_Ty, PG_Tz);
+        Eigen::Quaterniond PG_Q;
+        PG_Q.w() = PG_Qw;
+        PG_Q.x() = PG_Qx;
+        PG_Q.y() = PG_Qy;
+        PG_Q.z() = PG_Qz;
+        Eigen::Matrix3d VIO_R, PG_R;
+        PG_R = PG_Q.toRotationMatrix();
+
+        Eigen::Quaterniond PG_Q_(PG_R.transpose());
+        Eigen::Vector3d PG_T_;
+        PG_T_ = - PG_R.transpose() * PG_T;
+        
+        // save images.txt for COLMAP
+        orbslam2_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, PG_T_, PG_Q_);
+        index += 1;
+    }
+    fclose (pFile);
+
+    // save cameras.txt and points3D.txt for COLMAP
+    orbslam2_PoseGraph_reader::saveCameras_txt_in_COLMAP_format();
+    orbslam2_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format();
+}
+
+void orbslam2_PoseGraph_reader::saveImages_txt_in_COLMAP_format(int index, Eigen::Vector3d PG_T, Eigen::Quaterniond PG_Q) 
+{
+    // Save the images' pose in a txt file
+    // Image list with two lines of data per image: 
+    //      IMAGE_ID, QW, QX, QY, QZ, TX, TY, TZ, CAMERA_ID, NAME
+    //      POINTS2D[] as (X, Y, POINT3D_ID) !!!!!!attention <-- this line will be empty
+    FILE *pFile;
+    std::string file_path = IMAGES_TXT_SAVE_PATH + "images.txt";
+    int index_num = index+1;
+    std::string tmp = modify_img_name(index_num);
+    std::string image_name = "IMG" + tmp + ".png";
+    pFile = fopen(file_path.c_str(), "a");
+    fprintf (pFile, "%d %f %f %f %f %f %f %f %d %s \n\n",
+                    index_num,
+                    PG_Q.w(), PG_Q.x(), PG_Q.y(), PG_Q.z(), 
+                    PG_T.x(), PG_T.y(), PG_T.z(),
+                    JohnDeere_Mono::CAMERA_ID, image_name.c_str());
+    fclose(pFile);
+}
+
+void orbslam2_PoseGraph_reader::saveCameras_txt_in_COLMAP_format() 
+{
+    // Camera list with one line of data per camera: 
+    //      CAMERA_ID, MODEL, WIDTH, HEIGHT, PARAMS[focal length in pixel, principal point at pixel location]
+    FILE *pFile;
+    std::printf("cameras.txt path: %s\n", CAMERAS_TXT_SAVE_PATH.c_str());
+    std::printf("cameras.txt saving... \n");
+    std::string file_path = CAMERAS_TXT_SAVE_PATH + "cameras.txt";
+    pFile = fopen(file_path.c_str(), "w");
+    write_camera_model_JD(pFile, JohnDeere_Mono::CAMERA_ID, JohnDeere_Mono::CAMERA_MODEL);
+    fclose(pFile);
+}
+
+void orbslam2_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format() 
+{
+    // 3D point list with one line of data per point:
+    // POINT3D_ID, X, Y, Z, R, G, B, ERROR, TRACK[] as (IMAGE_ID, POINT2D_IDX)
+    FILE *pFile; // !!!!!!attention, this file should be empty in case no 3D points record from SLAM
+    std::printf("points3D.txt path: %s\n", POINTS3D_TXT_SAVE_PATH.c_str());
+    std::printf("points3D.txt should be empty! \n");
+    std::string file_path = POINTS3D_TXT_SAVE_PATH + "points3D.txt";
+    pFile = fopen(file_path.c_str(), "w");
+    fclose(pFile);
+}

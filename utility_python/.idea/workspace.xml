@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../output/cameras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/cameras.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/images.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/images.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_mask.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_mask.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gps_data_pandas_read.py" beforeDir="false" afterPath="$PROJECT_DIR$/gps_data_pandas_read.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mask_sensor6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trajectroy_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/trajectroy_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract_keyframe_img.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_keyframe_img.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,20 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/extract_keyframe_img.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -68,6 +55,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -79,7 +67,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,9 +159,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.24808744" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.24808744" />
       <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -187,7 +173,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298279" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3298279" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.24282983" />
+      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.24282983" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -275,8 +261,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/extract_keyframe_img.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="475">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

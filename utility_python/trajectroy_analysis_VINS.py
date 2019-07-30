@@ -85,9 +85,9 @@ with open(pose_graph_file, 'r') as fp:
                           [Ty],
                           [Tz]])
 
-        Ry_minus90 = np.matrix([[0, 0, -1],
-                                [0, 1, 0],
-                                [1, 0, 0]])
+        # Ry_minus90 = np.matrix([[0, 0, -1],
+        #                         [0, 1, 0],
+        #                         [1, 0, 0]])
         #
         # Rz_minus90 = np.matrix([[0, 1, 0],
         #                    [-1, 0, 0],

@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../exe/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../exe/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/cameras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/cameras.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/images.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/images.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pose_graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../src/pose_graph.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pose_graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/pose_graph.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gps_data_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/gps_data_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" beforeDir="false" afterPath="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trajectroy_analysis_VINS.py" beforeDir="false" afterPath="$PROJECT_DIR$/trajectroy_analysis_VINS.py" afterDir="false" />
     </list>
@@ -16,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-740">
-              <caret line="185" column="53" selection-start-line="185" selection-start-column="53" selection-end-line="185" selection-end-column="53" />
+            <state relative-caret-position="549">
+              <caret line="224" column="35" selection-start-line="224" selection-start-column="35" selection-end-line="224" selection-end-column="35" />
               <folding>
                 <element signature="e#68#86#0" expanded="true" />
               </folding>
@@ -26,24 +33,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps_data_pandas_read.py">
+        <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="-770">
+              <caret line="105" column="6" selection-start-line="105" selection-start-column="6" selection-end-line="105" selection-end-column="6" />
               <folding>
-                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
+        <entry file="file://$PROJECT_DIR$/gps_data_pandas_read.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="133" selection-start-line="133" selection-end-line="137" selection-end-column="14" />
+            <state relative-caret-position="190">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="699">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
+            <state relative-caret-position="361">
+              <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -79,21 +86,21 @@
         <option value="$PROJECT_DIR$/gps_data_analysis_2.py" />
         <option value="$PROJECT_DIR$/KalmanFilter_simple.py" />
         <option value="$PROJECT_DIR$/gps_data_pandas_read.py" />
-        <option value="$PROJECT_DIR$/gps_data_analysis.py" />
         <option value="$PROJECT_DIR$/trajectroy_analysis.py" />
         <option value="$PROJECT_DIR$/create_mask.py" />
         <option value="$PROJECT_DIR$/change_img_name_2.py" />
         <option value="$PROJECT_DIR$/extract_keyframe_img.py" />
+        <option value="$PROJECT_DIR$/gps_data_analysis.py" />
         <option value="$PROJECT_DIR$/trajectroy_analysis_VINS.py" />
         <option value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="1853" />
-    <option name="height" value="1175" />
+    <option name="x" value="2128" />
+    <option name="y" value="197" />
+    <option name="width" value="1389" />
+    <option name="height" value="879" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -206,10 +213,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
-    <editor active="true" />
+    <frame x="1920" y="-2" width="1920" height="1202" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.24808744" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.14496574" />
       <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -222,7 +228,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298279" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3298279" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.24282983" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.23671947" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -291,10 +297,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pose_graph_test.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-770">
+          <caret line="105" column="6" selection-start-line="105" selection-start-column="6" selection-end-line="105" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-740">
-          <caret line="185" column="53" selection-start-line="185" selection-start-column="53" selection-end-line="185" selection-end-column="53" />
+        <state relative-caret-position="549">
+          <caret line="224" column="35" selection-start-line="224" selection-start-column="35" selection-end-line="224" selection-end-column="35" />
           <folding>
             <element signature="e#68#86#0" expanded="true" />
           </folding>
@@ -303,28 +322,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gps_data_pandas_read.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state relative-caret-position="190">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="133" selection-start-line="133" selection-end-line="137" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="361">
+          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

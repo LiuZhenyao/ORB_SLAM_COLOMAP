@@ -12,6 +12,8 @@ namespace vins_PoseGraph_reader
     void saveImages_txt_in_COLMAP_format(int index, Eigen::Vector3d PG_T, Eigen::Quaterniond PG_Q);
     void saveCameras_txt_in_COLMAP_format();
     void savePoints3D_txt_in_COLMAP_format();   
+
+    void test_pg();
 }
 
 // Global function utilities

@@ -5,15 +5,20 @@ from mpl_toolkits.mplot3d import Axes3D
 import gps_data_analysis
 from numpy.linalg import inv
 import quaternion
+from scipy.interpolate import RegularGridInterpolator
 
-csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
+
+csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_12_0955_54_perceptionLog_StructSensorSF3000.csv"
+# csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2046_57_perceptionLog_StructSensorSF3000.csv"
+# csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
 PVT_msg, INS_msg, IMU_msg = gps_data_analysis.read_gps_data(csv_file_path)
 timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = gps_data_analysis.sparse_PVT_msg(PVT_msg)
 
 # Set first measurement of GPS as origin point
-X = [(item - easting[0]) for item in easting]
-Y = [(item - northing[0]) for item in northing]
-Z = [(item - altitude[0]) for item in altitude]
+timestamps_pvt = np.asarray(timestamps_pvt)[4500:-1]
+X = np.asarray([(item - easting[4500]) for item in easting])[4500:-1]
+Y = np.asarray([(item - northing[4500]) for item in northing])[4500:-1]
+Z = np.asarray([(item - altitude[4500]) for item in altitude])[4500:-1]
 
 
 # GPS_position = np.zeros((3, len(X)))
@@ -64,11 +69,15 @@ Z = [(item - altitude[0]) for item in altitude]
 #-------------------------------------------------------------------------------------------------#
 
 # read pose graph
-pose_graph_file = "/home/shu/catkin_ws/src/VINS-Mono/pose_graph/TEST_3/pose_graph.txt"
+pose_graph_file = "/home/shu/catkin_ws/src/VINS-Mono/pose_graph/TEST_1/pose_graph.txt"
 timestamps_pg = []
 PG_Tx = []
 PG_Ty = []
 PG_Tz = []
+qx = []
+qy = []
+qz = []
+qw = []
 with open(pose_graph_file, 'r') as fp:
     temp = []
     for line in fp:
@@ -96,13 +105,21 @@ with open(pose_graph_file, 'r') as fp:
         #                        [0, np.cos(30*pi/180), -np.sin(30*pi/180)],
         #                        [0, np.sin(30*pi/180), np.cos(30*pi/180)]])
 
+        # Rz_minus180 = np.matrix([[-1, 0, 0],
+        #                    [0, -1, 0],
+        #                    [0, 0, 1]])
+
         PG_T_ = PG_T
         #
         PG_Tx.append(PG_T_[0,0])
         PG_Ty.append(PG_T_[1,0])
         PG_Tz.append(PG_T_[2,0])
 
-#-------------------------------------------------------------------------------------------------#
+
+        qw.append(np.float(temp[i].split(" ")[13]))
+        qx.append(np.float(temp[i].split(" ")[14]))
+        qy.append(np.float(temp[i].split(" ")[15]))
+        qz.append(np.float(temp[i].split(" ")[16]))
 
 fig = plt.figure()
 plt.plot(PG_Tx, PG_Ty, label='VINS-pose-graph')
@@ -116,7 +133,6 @@ plt.legend()
 plt.grid(True)
 plt.xlabel('x (easting) [m]')
 plt.ylabel('y (northing) [m]')
-
 plt.title('2D trajectory of GPS and pose graph (local frame of GPS)')
 # plt.show()
 
@@ -137,13 +153,27 @@ ax.set_zlabel('z (altitude) [m]')
 ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
 ax.autoscale()
 
-plt.figure()
-plt.subplot(211)
-plt.plot(timestamps_pvt, X)
-plt.subplot(212)
-plt.plot(timestamps_pg, PG_Tx)
+# plt.figure()
+# plt.subplot(211)
+# plt.plot(timestamps_pvt, X)
+# plt.subplot(212)
+# plt.plot(timestamps_pg, PG_Tx)
 
 plt.show()
 
 t = [PG_Tx[0] - X[0], PG_Ty[0] - Y [0], PG_Tz[0] - Z[0]]
 print(t)
+
+
+
+
+# ----------------------------------------------------------------------------------------------------#
+# interpolate GPS/IMU data to find corresponding measurement with the MYNT EYE camera timestamps
+X_interp = np.interp(timestamps_pg, timestamps_pvt, X)
+Y_interp = np.interp(timestamps_pg, timestamps_pvt, Y)
+Z_interp = np.interp(timestamps_pg, timestamps_pvt, Z)
+
+
+with open('./pose_graph_test.txt', 'w') as fp:
+    for i in range(len(X_interp)):
+        fp.write('%f %f %f %f %f %f %f %f \n' % (timestamps_pg[i], X_interp[i], Y_interp[i], Z_interp[i], qx[i], qy[i], qz[i], qw[i]))

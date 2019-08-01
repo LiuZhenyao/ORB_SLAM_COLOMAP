@@ -9,7 +9,9 @@ int main() {
 
     // testFunc();
     // vins_PoseGraph_reader::loadPoseGraph();
-    orbslam2_PoseGraph_reader::loadPoseGraph();
+    // orbslam2_PoseGraph_reader::loadPoseGraph();
+
+    vins_PoseGraph_reader::test_pg();
 
     return 0;
 }

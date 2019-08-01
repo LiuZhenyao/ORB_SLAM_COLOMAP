@@ -27,13 +27,56 @@ with open(pose_graph_file, 'r') as fp:
         temp.append(line)
 
     for i in range(len(temp)):
-        timestamps_pg.append(np.float(temp[i].split(" ")[0]))
+        ts = (temp[i].split(" ")[0]).split('.')
+        timestamps_pg.append(np.float(ts[0] + ts[1]))
         PG_Tx.append(np.float(temp[i].split(" ")[1]))
         PG_Ty.append(np.float(temp[i].split(" ")[2]))
         PG_Tz.append(np.float(temp[i].split(" ")[3]))
 
+# plt.figure()
+# plt.subplot(211)
+# plt.plot(timestamps_pg, PG_Tx)
+# plt.subplot(212)
+# plt.plot(data['softwareTimeStamp'], Y)
+#
+# plt.figure()
+# plt.subplot(211)
+# plt.plot(timestamps_pg, PG_Ty)
+# plt.subplot(212)
+# plt.plot(data['softwareTimeStamp'], X)
+#
+# plt.figure()
+# plt.subplot(211)
+# plt.plot(timestamps_pg, PG_Tz)
+# plt.subplot(212)
+# plt.plot(data['softwareTimeStamp'], Z)
+
+# https://github.com/raulmur/ORB_SLAM2/issues/80
+
+plt.figure()
+plt.subplot(321)
+plt.plot(timestamps_pg, PG_Tx, label='PG_Tx')
+plt.legend()
+plt.subplot(323)
+plt.plot(timestamps_pg, PG_Tz, label='PG_Tz')
+plt.legend()
+plt.subplot(325)
+plt.plot(timestamps_pg, PG_Ty, label='PG_Ty')
+plt.legend()
+
+plt.subplot(322)
+plt.plot(data['softwareTimeStamp'], X, label='X')
+plt.legend()
+plt.subplot(324)
+plt.plot(data['softwareTimeStamp'], Y, label='Y')
+plt.legend()
+plt.subplot(326)
+plt.plot(data['softwareTimeStamp'], Z, label='Z')
+plt.legend()
+
+
 fig = plt.figure()
-plt.plot(PG_Tx, PG_Ty, label='ORBSLAM-pose-graph')
+plt.plot(PG_Tx, PG_Tz, label='ORBSLAM-pose-graph')
 plt.legend()
 plt.plot(X, Y, '--', label='GPS')
 plt.legend()

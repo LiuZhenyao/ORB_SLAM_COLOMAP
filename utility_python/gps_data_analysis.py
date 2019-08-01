@@ -236,7 +236,7 @@ def plot_IMU_msg(timestamps_imu, xAccel, yAccel, zAccel, xGyroRate, yGyroRate, z
 
 
 if __name__ == "__main__":
-    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
+    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2046_57_perceptionLog_StructSensorSF3000.csv"
 
     PVT_msg, INS_msg, IMU_msg = read_gps_data(csv_file_path)
     # PVT (Position, Velocity, and Time in navigation systems, especially satellite-based)

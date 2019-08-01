@@ -265,6 +265,7 @@ void orbslam2_PoseGraph_reader::loadPoseGraph()
     // Read pose graph data from *.txt, which was generated from ORB-SLAM2
     FILE * pFile;
     std::string file_path = POSE_GRAPH_SAVE_PATH + "KeyFrameTrajectory.txt";
+    // std::string file_path = "../utility_python/pose_graph_test.txt";
     printf("lode pose graph from: %s \n", file_path.c_str());
     printf("pose graph loading...\n");
     std::printf("images.txt path: %s\n", IMAGES_TXT_SAVE_PATH.c_str());
@@ -357,4 +358,63 @@ void orbslam2_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format()
     std::string file_path = POINTS3D_TXT_SAVE_PATH + "points3D.txt";
     pFile = fopen(file_path.c_str(), "w");
     fclose(pFile);
+}
+
+
+
+void vins_PoseGraph_reader::test_pg()
+{
+    // Read pose graph data from *.txt, which was generated from ORB-SLAM2
+    FILE * pFile;
+    std::string file_path = "../utility_python/pose_graph_test.txt";
+    printf("lode pose graph from: %s \n", file_path.c_str());
+    printf("pose graph loading...\n");
+    std::printf("images.txt path: %s\n", IMAGES_TXT_SAVE_PATH.c_str());
+    std::printf("images.txt saving... \n");
+    pFile = fopen (file_path.c_str(),"r");
+    if (pFile == NULL)
+    {
+        printf("load pose graph error: wrong pose graph path or no pose graph available \n");
+        return;
+    }
+
+    int index = 0;
+    double time_stamp;
+    double PG_Tx, PG_Ty, PG_Tz;
+    double PG_Qw, PG_Qx, PG_Qy, PG_Qz;
+
+    while (fscanf(pFile,"%lf %lf %lf %lf %lf %lf %lf %lf", 
+                        &time_stamp,  
+                        &PG_Tx, &PG_Ty, &PG_Tz, 
+                        &PG_Qx, &PG_Qy, &PG_Qz, &PG_Qw)!= EOF )
+    {
+        cv::Mat image;
+        std::string image_path, descriptor_path;
+        Eigen::Vector3d PG_T(PG_Tx, PG_Ty, PG_Tz);
+        Eigen::Quaterniond PG_Q;
+        PG_Q.w() = PG_Qw;
+        PG_Q.x() = PG_Qx;
+        PG_Q.y() = PG_Qy;
+        PG_Q.z() = PG_Qz;
+        Eigen::Matrix3d VIO_R, PG_R;
+        PG_R = PG_Q.toRotationMatrix();
+
+        Eigen::Matrix3d R_z_;
+        R_z_.row(0) << 0, 1, 0;
+        R_z_.row(1) << -1, 0, 0;
+        R_z_.row(2) << 0, 0, 1; 
+
+        Eigen::Quaterniond PG_Q_(R_z_ * PG_R.transpose());
+        Eigen::Vector3d PG_T_;
+        PG_T_ = - R_z_ * PG_R.transpose() * PG_T;
+        
+        // save images.txt for COLMAP
+        vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, PG_T_, PG_Q_);
+        index += 1;
+    }
+    fclose (pFile);
+
+    // save cameras.txt and points3D.txt for COLMAP
+    vins_PoseGraph_reader::saveCameras_txt_in_COLMAP_format();
+    vins_PoseGraph_reader::savePoints3D_txt_in_COLMAP_format();
 }

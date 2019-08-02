@@ -11,10 +11,13 @@ with open(keyframe_file_path, 'r') as fp:
         # print (line)
         tmp = line.split(' ')[0]
         # print (tmp)
-        timestemps.append(tmp.split('.')[0] + tmp.split('.')[1])
+        tmp2 = tmp.split('.')[0] + tmp.split('.')[1]
+        tmp3 = tmp2 + '0000'
+        timestemps.append(tmp3)
         # print (timestemps)
 
-img_file_path = '/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_6/orb_slot_1'
+# img_file_path = '/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_5/orb_slot_0'
+img_file_path = '/home/shu/kalibr_workspace/output_vins_data2/cam0'
 img_list = os.listdir(img_file_path)
 for name in img_list:
     for ts in timestemps:

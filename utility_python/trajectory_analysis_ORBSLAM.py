@@ -5,99 +5,151 @@ from mpl_toolkits.mplot3d import Axes3D
 from numpy.linalg import inv
 import quaternion
 import pandas
+import  gps_data_analysis
 
-df = pandas.read_csv('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/2019_06_26_1428_57_extractedPoseData_StructImageGroup.csv')
-data = df[df['senID']==5]
-x = data['x'].tolist()
-y = data['y'].tolist()
-z = data['z'].tolist()
-X = [item - x[0] for item in x]
-Y = [item - y[0] for item in y]
-Z = [item - z[0] for item in z]
+# for agricultural dataset
+def agri_process():
 
-pose_graph_file = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/sensor5_slot0/KeyFrameTrajectory.txt'
-timestamps_pg = []
-PG_Tx = []
-PG_Ty = []
-PG_Tz = []
-with open(pose_graph_file, 'r') as fp:
-    temp = []
-    for line in fp:
-        # print(line)
-        temp.append(line)
+    df = pandas.read_csv('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/2019_06_26_1428_57_extractedPoseData_StructImageGroup.csv')
+    data = df[df['senID']==5]
+    x = data['x'].tolist()
+    y = data['y'].tolist()
+    z = data['z'].tolist()
 
-    for i in range(len(temp)):
-        ts = (temp[i].split(" ")[0]).split('.')
-        timestamps_pg.append(np.float(ts[0] + ts[1]))
-        PG_Tx.append(np.float(temp[i].split(" ")[1]))
-        PG_Ty.append(np.float(temp[i].split(" ")[2]))
-        PG_Tz.append(np.float(temp[i].split(" ")[3]))
+    # Sensor 5 to origin:
+    R = np.matrix([[-0.6459666, -0.7385558, -0.1930348],
+                   [-0.2928724, 0.4732986, -0.8307913],
+                   [0.7049489, -0.4801289, -0.5220377]])
 
-# plt.figure()
-# plt.subplot(211)
-# plt.plot(timestamps_pg, PG_Tx)
-# plt.subplot(212)
-# plt.plot(data['softwareTimeStamp'], Y)
-#
-# plt.figure()
-# plt.subplot(211)
-# plt.plot(timestamps_pg, PG_Ty)
-# plt.subplot(212)
-# plt.plot(data['softwareTimeStamp'], X)
-#
-# plt.figure()
-# plt.subplot(211)
-# plt.plot(timestamps_pg, PG_Tz)
-# plt.subplot(212)
-# plt.plot(data['softwareTimeStamp'], Z)
+    t = np.matrix([[2.6655631],
+                   [2.2556686],
+                   [0.0602708]])
 
-# https://github.com/raulmur/ORB_SLAM2/issues/80
+    X_ = []
+    Y_ = []
+    Z_ = []
+    for i in range(len(x)):
+        coor = np.matrix([[x[i]],
+                          [y[i]],
+                          [z[i]]])
+        # origin to sensor 5
+        coor_s = R.transpose() * coor - R.transpose() * t
+        # coor_s = coor
 
-plt.figure()
-plt.subplot(321)
-plt.plot(timestamps_pg, PG_Tx, label='PG_Tx')
-plt.legend()
-plt.subplot(323)
-plt.plot(timestamps_pg, PG_Tz, label='PG_Tz')
-plt.legend()
-plt.subplot(325)
-plt.plot(timestamps_pg, PG_Ty, label='PG_Ty')
-plt.legend()
+        X_.append(coor_s[0, 0])
+        Y_.append(coor_s[1, 0])
+        Z_.append(coor_s[2, 0])
 
-plt.subplot(322)
-plt.plot(data['softwareTimeStamp'], X, label='X')
-plt.legend()
-plt.subplot(324)
-plt.plot(data['softwareTimeStamp'], Y, label='Y')
-plt.legend()
-plt.subplot(326)
-plt.plot(data['softwareTimeStamp'], Z, label='Z')
-plt.legend()
+    X = [item - X_[0] for item in X_]
+    Y = [item - Y_[0] for item in Y_]
+    Z = [item - Z_[0] for item in Z_]
+
+    plt.figure()
+    plt.plot(X, Y, label='sensor 5, slot 0')
+    plt.title('Trajectory of sensor 5, slot 0 (local frame)')
+    plt.xlabel('x [m]')
+    plt.ylabel('y [m]')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    d = np.sqrt((X[0]-X[-1])*(X[0]-X[-1]) + (Y[0]-Y[-1])*(Y[0]-Y[-1]))
+    print(d)
+
+    time = data['time'].tolist()
+    softwareTimeStamp = data['softwareTimeStamp'].tolist()
+
+    timestamps_gps = []
+    for i in range(len(time)):
+        timestamps_gps.append(np.double(str(time[i]) + '.' + str(softwareTimeStamp[i]).replace('.', '')))
 
 
-fig = plt.figure()
-plt.plot(PG_Tx, PG_Tz, label='ORBSLAM-pose-graph')
-plt.legend()
-plt.plot(X, Y, '--', label='GPS')
-plt.legend()
-plt.plot(PG_Tx[0], PG_Ty[0], 'rx', label='(ORBSLAM) start point')
-plt.legend()
-plt.plot(X[0], Y[0], 'bx', label='(GPS) start point')
-plt.legend()
-plt.grid(True)
-plt.xlabel('x (easting) [m]')
-plt.ylabel('y (northing) [m]')
+    pose_graph_file = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/sensor5_slot0/KeyFrameTrajectory.txt'
+    timestamps_pg = []
+    qx = []
+    qy = []
+    qz = []
+    qw = []
+    PG_Tx = []
+    PG_Ty = []
+    PG_Tz = []
+    with open(pose_graph_file, 'r') as fp:
+        temp = []
+        for line in fp:
+            temp.append(line)
 
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-ax.plot(PG_Tx, PG_Ty, PG_Tz, label='ORBSLAM-pose-graph')
-ax.legend(loc='upper left')
-ax.plot(X, Y, Z, '--', label='GPS')
-ax.legend(loc='upper left')
-ax.set_xlabel('x (easting) [m]')
-ax.set_ylabel('y (northing) [m]')
-ax.set_zlabel('z (altitude) [m]')
-ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
-ax.autoscale()
+        for i in range(len(temp)):
+            ts = (temp[i].split(" ")[0]).split('.')
+            ts_1 = ts[0] + ts[1]
+            ts_2 = ts_1[0:10] + '.' + ts_1[10:]
+            timestamps_pg.append(np.float(ts_2))
+            PG_Tx.append(np.float(temp[i].split(" ")[1]))
+            PG_Ty.append(np.float(temp[i].split(" ")[2]))
+            PG_Tz.append(np.float(temp[i].split(" ")[3]))
+            qx.append(np.float(temp[i].split(" ")[4]))
+            qy.append(np.float(temp[i].split(" ")[5]))
+            qz.append(np.float(temp[i].split(" ")[6]))
+            qw.append(np.float(temp[i].split(" ")[7]))
 
-plt.show()
+    X_interp = np.interp(timestamps_pg, timestamps_gps, X)
+    Y_interp = np.interp(timestamps_pg, timestamps_gps, Y)
+    Z_interp = np.interp(timestamps_pg, timestamps_gps, Z)
+
+
+
+    with open('./ref_images_agri.txt', 'w') as fp:
+        for i in range(len(X_interp)):
+            img_name = ""
+            if i < 10:
+                img_name = "00000" + str(i)
+            elif i > 9 and i < 100:
+                img_name = "0000" + str(i)
+            elif i > 99 and i < 1000:
+                img_name = "000" + str(i)
+            elif i > 999 and i < 10000:
+                img_name = "00" + str(i)
+            elif i > 9999 and i < 100000:
+                img_name = "0" + str(i)
+            fp.write('%s %f %f %f \n' % ('IMG' + img_name + '.png', X_interp[i], Y_interp[i], Z_interp[i]))
+
+
+# for field data:
+def field_process():
+    kf_file = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/KeyFrameTrajectory.txt'
+    timestamps_pg = []
+    with open(kf_file, 'r') as fp:
+        for line in fp:
+            timestamps_pg.append(line.split(' ')[0])
+
+    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
+    PVT_msg, INS_msg, IMU_msg = gps_data_analysis.read_gps_data(csv_file_path)
+    timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = gps_data_analysis.sparse_PVT_msg(
+        PVT_msg)
+
+    # Set first measurement of GPS as origin point
+    timestamps_pvt = np.asarray(timestamps_pvt)
+    X = np.asarray([(item - easting[0]) for item in easting])
+    Y = np.asarray([(item - northing[0]) for item in northing])
+    Z = np.asarray([(item - altitude[0]) for item in altitude])
+
+    plt.plot(X, Y)
+
+    X_interp = np.interp(timestamps_pg, timestamps_pvt, X)
+    Y_interp = np.interp(timestamps_pg, timestamps_pvt, Y)
+    Z_interp = np.interp(timestamps_pg, timestamps_pvt, Z)
+
+    with open('./ref_images_field.txt', 'w') as fp:
+        for i in range(len(X_interp)):
+            img_name = ""
+            if i < 10:
+                img_name = "00000" + str(i)
+            elif i > 9 and i < 100:
+                img_name = "0000" + str(i)
+            elif i > 99 and i < 1000:
+                img_name = "000" + str(i)
+            elif i > 999 and i < 10000:
+                img_name = "00" + str(i)
+            elif i > 9999 and i < 100000:
+                img_name = "0" + str(i)
+            fp.write('%s %f %f %f \n' % ('IMG' + img_name + '.png', X_interp[i], Y_interp[i], Z_interp[i]))
+

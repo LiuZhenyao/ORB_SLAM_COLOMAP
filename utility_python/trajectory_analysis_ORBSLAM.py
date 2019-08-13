@@ -33,8 +33,8 @@ def agri_process():
                           [y[i]],
                           [z[i]]])
         # origin to sensor 5
-        coor_s = R.transpose() * coor - R.transpose() * t
-        # coor_s = coor
+        # coor_s = R.transpose() * coor - R.transpose() * t
+        coor_s = coor
 
         X_.append(coor_s[0, 0])
         Y_.append(coor_s[1, 0])
@@ -45,8 +45,8 @@ def agri_process():
     Z = [item - Z_[0] for item in Z_]
 
     plt.figure()
-    plt.plot(X, Y, label='sensor 5, slot 0')
-    plt.title('Trajectory of sensor 5, slot 0 (local frame)')
+    plt.plot(X, Y, label='GPS')
+    plt.title('Trajectory of GPS (local frame)')
     plt.xlabel('x [m]')
     plt.ylabel('y [m]')
     plt.legend()

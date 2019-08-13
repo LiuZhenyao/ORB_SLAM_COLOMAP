@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../exe/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../exe/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../output/cameras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/cameras.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../output/images.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/images.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/pose_graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../src/pose_graph.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract_keyframe_img.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_keyframe_img.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gps_data_pandas_read.py" beforeDir="false" afterPath="$PROJECT_DIR$/gps_data_pandas_read.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" beforeDir="false" afterPath="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" afterDir="false" />
     </list>
@@ -19,41 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-37">
-              <caret line="115" column="17" lean-forward="true" selection-start-line="115" selection-start-column="17" selection-end-line="115" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ref_images_field.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2280">
-              <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="20" selection-end-column="71" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -75,15 +36,15 @@
         <option value="$PROJECT_DIR$/change_img_name_2.py" />
         <option value="$PROJECT_DIR$/gps_data_analysis.py" />
         <option value="$PROJECT_DIR$/trajectroy_analysis_VINS.py" />
-        <option value="$PROJECT_DIR$/gps_data_pandas_read.py" />
         <option value="$PROJECT_DIR$/extract_keyframe_img.py" />
         <option value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
+        <option value="$PROJECT_DIR$/gps_data_pandas_read.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="215" />
-    <option name="y" value="190" />
+    <option name="x" value="405" />
+    <option name="y" value="205" />
     <option name="width" value="1389" />
     <option name="height" value="879" />
   </component>
@@ -221,9 +182,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.15027322" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.15027322" />
       <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -236,7 +196,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298279" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3298279" />
-      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.24282983" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.24282983" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -336,10 +296,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ref_images_field.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="43" selection-start-line="22" selection-end-line="22" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gps_data_pandas_read.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        <state relative-caret-position="-1258">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-end-line="14" selection-end-column="1" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -348,7 +315,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2280">
+        <state relative-caret-position="19">
           <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="20" selection-end-column="71" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -356,17 +323,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ref_images_field.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-37">
-          <caret line="115" column="17" lean-forward="true" selection-start-line="115" selection-start-column="17" selection-end-line="115" selection-end-column="17" />
+        <state relative-caret-position="684">
+          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

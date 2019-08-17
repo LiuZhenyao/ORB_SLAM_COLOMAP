@@ -424,7 +424,8 @@ void orbslam2_PoseGraph_reader::test_pg()
 {
     // Read pose graph data from *.txt, which was generated from ORB-SLAM2
     FILE * pFile;
-    std::string file_path = POSE_GRAPH_SAVE_PATH + "KeyFrameTrajectory.txt";
+    // std::string file_path = POSE_GRAPH_SAVE_PATH + "KeyFrameTrajectory.txt";
+    std::string file_path = "../utility_python/pose_graph_test_orb.txt";
     printf("lode pose graph from: %s \n", file_path.c_str());
     printf("pose graph loading...\n");
     std::printf("images.txt path: %s\n", IMAGES_TXT_SAVE_PATH.c_str());
@@ -457,9 +458,15 @@ void orbslam2_PoseGraph_reader::test_pg()
         Eigen::Matrix3d VIO_R, PG_R;
         PG_R = PG_Q.toRotationMatrix();
 
-        Eigen::Quaterniond PG_Q_(PG_R.transpose());
+        Eigen::Matrix3d R_3d_transform;
+        R_3d_transform.row(0) << -0.39517691, -0.40363569,  0.82517479;
+        R_3d_transform.row(1) << -0.91840957,  0.19213422, -0.34584434;
+        R_3d_transform.row(2) << -0.01894919, -0.89451812, -0.44662989; 
+
+
+        Eigen::Quaterniond PG_Q_((R_3d_transform * PG_R).transpose());
         Eigen::Vector3d PG_T_;
-        PG_T_ = - PG_R.transpose() * PG_T;
+        PG_T_ = - (R_3d_transform * PG_R).transpose() * PG_T;
         
         // save images.txt for COLMAP
         vins_PoseGraph_reader::saveImages_txt_in_COLMAP_format(index, PG_T_, PG_Q_);

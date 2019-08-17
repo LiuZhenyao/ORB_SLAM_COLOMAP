@@ -41,7 +41,7 @@ namespace orbslam2_PoseGraph_reader
     void saveCameras_txt_in_COLMAP_format();
     void savePoints3D_txt_in_COLMAP_format();
 
-    // This function used for reconstruction from field data and ORB-SLAM2
+    // This function used for reconstruction from field data and ORB-SLAM2, maybe with GPS position
     // Camera: mynt-eye
     void test_pg();
 }

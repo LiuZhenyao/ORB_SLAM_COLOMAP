@@ -34,7 +34,7 @@ namespace JohnDeere_Mono
     // const float cx = 6.6418193933398516e+02;
     // const float cy = 3.9153437691127681e+02;
 
-    // Distortion parameters, here, the image is already distorted!
+    // Distortion parameters, here, the image is already un-distorted!
     const float p1 = 0;
     const float p2 = 0;
     const float k1 = 0;

@@ -171,7 +171,7 @@ X_interp = np.interp(timestamps_pg, timestamps_pvt, X)
 Y_interp = np.interp(timestamps_pg, timestamps_pvt, Y)
 Z_interp = np.interp(timestamps_pg, timestamps_pvt, Z)
 
-
-with open('./pose_graph_test.txt', 'w') as fp:
-    for i in range(len(X_interp)):
-        fp.write('%f %f %f %f %f %f %f %f \n' % (timestamps_pg[i], X_interp[i], Y_interp[i], Z_interp[i], qx[i], qy[i], qz[i], qw[i]))
+#
+# with open('./pose_graph_test.txt', 'w') as fp:
+#     for i in range(len(X_interp)):
+#         fp.write('%f %f %f %f %f %f %f %f \n' % (timestamps_pg[i], X_interp[i], Y_interp[i], Z_interp[i], qx[i], qy[i], qz[i], qw[i]))

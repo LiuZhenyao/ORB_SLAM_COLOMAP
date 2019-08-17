@@ -12,7 +12,8 @@ namespace vins_PoseGraph_reader
     void saveImages_txt_in_COLMAP_format(int index, Eigen::Vector3d PG_T, Eigen::Quaterniond PG_Q);
     void saveCameras_txt_in_COLMAP_format();
     void savePoints3D_txt_in_COLMAP_format();   
-
+    
+    // This function used for reconstruction from GPS position and VINS pose (rotation)
     void test_pg();
 }
 
@@ -32,10 +33,15 @@ const std::string POINTS3D_TXT_SAVE_PATH = "/home/shu/fangwenSHU/Monocular-SLAM-
 namespace orbslam2_PoseGraph_reader 
 {
     // This namespace define the functions used to process key-frames/ camera-frames generated from ORB-SLAM2
+    
+    // Those function used for reconstruction from agricultral data of John Deere
+    // Camera: crossed-view
     void loadPoseGraph();
     void saveImages_txt_in_COLMAP_format(int index, Eigen::Vector3d PG_T, Eigen::Quaterniond PG_Q);
     void saveCameras_txt_in_COLMAP_format();
     void savePoints3D_txt_in_COLMAP_format();
 
+    // This function used for reconstruction from field data and ORB-SLAM2
+    // Camera: mynt-eye
     void test_pg();
 }

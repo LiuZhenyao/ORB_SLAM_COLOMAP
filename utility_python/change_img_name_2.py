@@ -17,5 +17,6 @@ for filename in img_list:
 	elif index_num > 9999 and index_num < 100000:
 		tmp = "0" + str(index_num)
 	os.rename("./imgs/"+filename, "./imgs/IMG"+str(tmp)+".png")
-    index_num += 1
+
+	index_num += 1
 

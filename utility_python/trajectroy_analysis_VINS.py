@@ -165,8 +165,6 @@ t = [PG_Tx[0] - X[0], PG_Ty[0] - Y [0], PG_Tz[0] - Z[0]]
 print(t)
 
 
-
-
 # ----------------------------------------------------------------------------------------------------#
 # interpolate GPS/IMU data to find corresponding measurement with the MYNT EYE camera timestamps
 X_interp = np.interp(timestamps_pg, timestamps_pvt, X)

@@ -311,10 +311,13 @@ with open(kf_file, 'r') as fp:
 fig = plt.figure()
 ax = fig.gca(projection='3d')
 ax.plot(tx, ty, tz, label='ORB-pose-graph')
-ax.plot(X_interp,Y_interp,Z_interp)
+plt.legend(loc='upper left')
+ax.plot(X_interp,Y_interp,Z_interp, label='GPS')
+plt.legend(loc='upper left')
 ax.set_xlabel('x ')
 ax.set_ylabel('y ')
 ax.set_zlabel('z ')
+ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
 ax.autoscale()
 
 
@@ -325,6 +328,6 @@ plt.plot(X_interp[0], Y_interp[0], 'bx', label='(GPS) start point')
 plt.show()
 
 
-with open('./pose_graph_test_orb.txt', 'w') as fp:
-    for i in range(len(X_interp)):
-        fp.write('%s %f %f %f %f %f %f %f \n' % (timestamps_pg[i], X_interp[i], Y_interp[i], Z_interp[i], qx[i], qy[i], qz[i], qw[i]))
+# with open('./pose_graph_test_orb.txt', 'w') as fp:
+#     for i in range(len(X_interp)):
+#         fp.write('%s %f %f %f %f %f %f %f \n' % (timestamps_pg[i], X_interp[i], Y_interp[i], Z_interp[i], qx[i], qy[i], qz[i], qw[i]))

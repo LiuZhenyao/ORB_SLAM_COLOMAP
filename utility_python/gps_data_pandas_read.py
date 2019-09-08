@@ -4,9 +4,9 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import os
 
-# df = pandas.read_csv('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/2019_06_26_1428_57_extractedPoseData_StructImageGroup.csv')
-#
-# data = df[df['senID']==5]
+df = pandas.read_csv('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/2019_06_26_1428_57_extractedPoseData_StructImageGroup.csv')
+
+data = df[df['senID']==5]
 #
 #
 #

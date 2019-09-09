@@ -22,4 +22,5 @@ https://colmap.github.io/faq.html#reconstruct-sparse-dense-model-from-known-came
 Written by Fangwen Shu
 
 Fangwen.Shu@dfki.de
+
 July 2019

@@ -19,7 +19,7 @@ The functionality in this project was built according to the requirement of COLM
 https://colmap.github.io/faq.html#reconstruct-sparse-dense-model-from-known-camera-poses
 
 ----------------------------------------------------------------------------------------
-                                                Written by Fangwen Shu
+Written by Fangwen Shu
 
-                                                Fangwen.Shu@dfki.de
-                                                July 2019
+Fangwen.Shu@dfki.de
+July 2019

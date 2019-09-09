@@ -1,9 +1,10 @@
 import os
 
-# SLAM+COLMAP: this is used to re-name the keyframes as a sequence format
+# SLAM+COLMAP: this is used to re-name the keyframes as a sequence format like IMG000001.png, IMG000002.png ...
+# if there was no index number in the image name
+
 img_list = os.listdir("/home/shu/Downloads/COLMAP_TEST/testfromORBSLAM2/imgs")
 img_list.sort()
-# if there was no index number in the image name
 index_num = 1
 
 for filename in img_list:

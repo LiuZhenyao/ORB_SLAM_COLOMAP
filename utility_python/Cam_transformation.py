@@ -1,8 +1,8 @@
-# Calculating relative transformation between body frames
-# e.g. cam0 to cam1 (mynteye)
-
 import numpy as np
 from numpy.linalg import inv
+
+# Calculating relative transformation between body frames
+# e.g. cam0 to cam1 (mynteye)
 
 ### method 1
 R = np.matrix([[0.999977157990771, -0.005868144222728206, -0.003353860474561389],

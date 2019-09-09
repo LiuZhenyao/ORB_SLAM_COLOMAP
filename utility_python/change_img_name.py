@@ -1,8 +1,8 @@
 import os
-# for filename in os.listdir('.'):
-# 	os.rename(filename, 'left-'+filename)
 
+# SLAM+COLMAP: this is used to re-name the keyframes as a sequence format
 for filename in os.listdir("./imgs"):
+	# if there was index number in the image name
 	index_num = int(filename.split("_")[0])+1
 	tmp = ""
 	if index_num < 10:

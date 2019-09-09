@@ -24,3 +24,19 @@ Written by Fangwen Shu
 Fangwen.Shu@dfki.de
 
 July 2019
+
+----------------------------------------------------------------------------------------
+
+## Brief explanation of the code:
+
+### 1. utility_python
+Python scripts include functionality to read, sparse, process and plot data.
+
+### 2. src
+*.h and *.cpp files for processing pose graph.
+
+### 3. exe
+main.cpp.
+
+### 4. config
+backup yaml file for parameters.

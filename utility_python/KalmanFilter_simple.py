@@ -1,6 +1,9 @@
 import numpy as np
 from numpy.linalg import inv
 
+## TODO: kalman flter, code not finished
+## TODO: this idea not feasible
+
 
 # state vector and co-variance matrix: y_hat = [x, y, z, qw, qx, qy, qz]^T, 7x1
 y_hat= np.matrix([[0, 0, 0, qw_0, qx_0, qy_0, qz_0]], np.float).transpose()  # initial state vector

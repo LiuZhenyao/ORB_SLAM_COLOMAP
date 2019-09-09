@@ -256,7 +256,8 @@ void write_camera_model_JD(FILE *pFile, const int& camera_id, const std::string&
         // http://docs.opencv.org/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html
         fprintf (pFile, "%d %s %d %d %f %f %f %f %f %f %f %f\n",
             camera_id, camera_model.c_str(), JohnDeere_Mono::IMG_WIDTH, JohnDeere_Mono::IMG_HEIGHT, 
-            JohnDeere_Mono::fx, JohnDeere_Mono::fy, JohnDeere_Mono::cx, JohnDeere_Mono::cy, JohnDeere_Mono::k1, JohnDeere_Mono::k2, JohnDeere_Mono::p1, JohnDeere_Mono::p2);
+            JohnDeere_Mono::fx, JohnDeere_Mono::fy, JohnDeere_Mono::cx, JohnDeere_Mono::cy, 
+            JohnDeere_Mono::k1, JohnDeere_Mono::k2, JohnDeere_Mono::p1, JohnDeere_Mono::p2);
     }
 }
 

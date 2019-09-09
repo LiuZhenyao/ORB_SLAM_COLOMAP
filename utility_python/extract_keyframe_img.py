@@ -1,11 +1,13 @@
 import os
-import numpy as np
 import cv2
 
-keyframe_file_path = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/KeyFrameTrajectory.txt'
+# ORB-SLAM + COLMAP:
+#   as long as ORB-SLAM save the pose graph as KeyFrameTrajectory.txt, we extract corresponding keyframes
 
+keyframe_file_path = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/KeyFrameTrajectory.txt'
 timestemps = []
 
+# in case the timestamps in different decimals
 with open(keyframe_file_path, 'r') as fp:
     for line in fp:
         # print (line)

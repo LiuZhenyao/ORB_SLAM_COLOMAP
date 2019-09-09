@@ -10,11 +10,12 @@ from math import sqrt
 from numpy import *
 from math import sqrt
 
-# for agricultural dataset, Geo-Registration
-def agri_process():
 
+
+def GeoRegistration_agri():
+    # Geo-Registration: agricultural dataset from John Deere
     df = pandas.read_csv('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/2019_06_26_1428_57_extractedPoseData_StructImageGroup.csv')
-    data = df[df['senID']==5]
+    data = df[df['senID']==5]  # sensor 5
     x = data['x'].tolist()
     y = data['y'].tolist()
     z = data['z'].tolist()
@@ -57,15 +58,15 @@ def agri_process():
     plt.show()
 
     d = np.sqrt((X[0]-X[-1])*(X[0]-X[-1]) + (Y[0]-Y[-1])*(Y[0]-Y[-1]))
-    print(d)
+    print("2D distance of gps trajectory: ", d)
 
     time = data['time'].tolist()
     softwareTimeStamp = data['softwareTimeStamp'].tolist()
 
     timestamps_gps = []
+    ## TODO: use new csv file, ignore software and hardware time
     for i in range(len(time)):
         timestamps_gps.append(np.double(str(time[i]) + '.' + str(softwareTimeStamp[i]).replace('.', '')))
-
 
     pose_graph_file = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/sensor5_slot0/KeyFrameTrajectory.txt'
     timestamps_pg = []
@@ -98,8 +99,9 @@ def agri_process():
     Y_interp = np.interp(timestamps_pg, timestamps_gps, Y)
     Z_interp = np.interp(timestamps_pg, timestamps_gps, Z)
 
-
-
+    # "ref_images_agri.txt":
+    #   (used in COLMAP for geo-registration)
+    #   IMG_name X Y Z
     with open('./ref_images_agri.txt', 'w') as fp:
         for i in range(len(X_interp)):
             img_name = ""
@@ -116,8 +118,9 @@ def agri_process():
             fp.write('%s %f %f %f \n' % ('IMG' + img_name + '.png', X_interp[i], Y_interp[i], Z_interp[i]))
 
 
-# for field data, Geo-Registration
-def field_process():
+
+def GeoRegistration_field():
+    # Geo-Registration: field data captured by mynteye and starfire
     kf_file = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/KeyFrameTrajectory.txt'
     timestamps_pg = []
     with open(kf_file, 'r') as fp:
@@ -157,7 +160,7 @@ def field_process():
             fp.write('%s %f %f %f \n' % ('IMG' + img_name + '.png', X_interp[i], Y_interp[i], Z_interp[i]))
 
 
-def rigid_transform_3D(A, B):
+def Rigid_Transform_3D(A, B):
 
     # Input: expects Nx3 matrix of points
     # Returns R,t
@@ -195,139 +198,138 @@ def rigid_transform_3D(A, B):
     return R, t
 
 
+if __name__ == "__main__":
 
-# for field data, Replace pose graph (translation matrix) by GPS position
-# def field_process_test():
+    # for field data, Replace VINS pose graph (translation matrix) by GPS position
+    kf_file = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/KeyFrameTrajectory.txt'
+    timestamps_pg = []
+    tx = []
+    ty = []
+    tz = []
+    qx = []
+    qy = []
+    qz = []
+    qw = []
 
-kf_file = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/KeyFrameTrajectory.txt'
-timestamps_pg = []
-tx = []
-ty = []
-tz = []
-qx = []
-qy = []
-qz = []
-qw = []
+    # Ry_plus90 = np.matrix([[0, 0, 1],
+    #                         [0, 1, 0],
+    #                         [-1, 0, 0]])
+    #
+    # Rx_minus30 = np.matrix([[1, 0, 0],
+    #                        [0, np.cos(-30*pi/180), -np.sin(-30*pi/180)],
+    #                        [0, np.sin(-30*pi/180), np.cos(-30*pi/180)]])
+    # # Rz_minus90 = np.matrix([[1, 0, 0],
+    # #                    [0, 1, 0],
+    # #                    [0, 0, 1]])
+    # R = 1
 
-# Ry_plus90 = np.matrix([[0, 0, 1],
-#                         [0, 1, 0],
-#                         [-1, 0, 0]])
-#
-# Rx_minus30 = np.matrix([[1, 0, 0],
-#                        [0, np.cos(-30*pi/180), -np.sin(-30*pi/180)],
-#                        [0, np.sin(-30*pi/180), np.cos(-30*pi/180)]])
-# # Rz_minus90 = np.matrix([[1, 0, 0],
-# #                    [0, 1, 0],
-# #                    [0, 0, 1]])
-# R = 1
+    with open(kf_file, 'r') as fp:
+        for line in fp:
+            print(line)
+            timestamps_pg.append(line.split(' ')[0])
 
-with open(kf_file, 'r') as fp:
-    for line in fp:
-        print(line)
-        timestamps_pg.append(line.split(' ')[0])
+            # tx.append(np.float(line.split(' ')[1]))
+            # ty.append(np.float(line.split(' ')[2]))
+            # tz.append(np.float(line.split(' ')[3]))
 
-        # tx.append(np.float(line.split(' ')[1]))
-        # ty.append(np.float(line.split(' ')[2]))
-        # tz.append(np.float(line.split(' ')[3]))
+            t_ = np.matrix([[np.float(line.split(' ')[1])],
+                           [np.float(line.split(' ')[2])],
+                           [np.float(line.split(' ')[3])]])
 
-        t_ = np.matrix([[np.float(line.split(' ')[1])],
-                       [np.float(line.split(' ')[2])],
-                       [np.float(line.split(' ')[3])]])
+            t = t_
 
-        t = t_
+            tx.append(t[0, 0])
+            ty.append(t[1, 0])
+            tz.append(t[2, 0])
 
-        tx.append(t[0, 0])
-        ty.append(t[1, 0])
-        tz.append(t[2, 0])
-
-        qx.append(np.float(line.split(' ')[4]))
-        qy.append(np.float(line.split(' ')[5]))
-        qz.append(np.float(line.split(' ')[6]))
-        qw.append(np.float(line.split(' ')[7].split('\n')[0]))
-
-
-csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
-PVT_msg, INS_msg, IMU_msg = gps_data_analysis.read_gps_data(csv_file_path)
-timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = gps_data_analysis.sparse_PVT_msg(
-    PVT_msg)
-
-# Set first measurement of GPS as origin point
-timestamps_pvt = np.asarray(timestamps_pvt)
-X = np.asarray([(item - easting[0]) for item in easting])
-Y = np.asarray([(item - northing[0]) for item in northing])
-Z = np.asarray([(item - altitude[0]) for item in altitude])
-
-X_interp = np.interp(timestamps_pg, timestamps_pvt, X)
-Y_interp = np.interp(timestamps_pg, timestamps_pvt, Y)
-Z_interp = np.interp(timestamps_pg, timestamps_pvt, Z)
+            qx.append(np.float(line.split(' ')[4]))
+            qy.append(np.float(line.split(' ')[5]))
+            qz.append(np.float(line.split(' ')[6]))
+            qw.append(np.float(line.split(' ')[7].split('\n')[0]))
 
 
-# find 3D transformation https://nghiaho.com/?page_id=671
-A = np.zeros((len(tx),3))
-B = np.zeros((len(tx),3))
+    csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"
+    PVT_msg, INS_msg, IMU_msg = gps_data_analysis.read_gps_data(csv_file_path)
+    timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = gps_data_analysis.sparse_PVT_msg(
+        PVT_msg)
 
-for i in range(len(tx)):
-    A[i, 0] = tx[i]
-    A[i, 1] = ty[i]
-    A[i, 2] = tz[i]
+    # Set first measurement of GPS as origin point
+    timestamps_pvt = np.asarray(timestamps_pvt)
+    X = np.asarray([(item - easting[0]) for item in easting])
+    Y = np.asarray([(item - northing[0]) for item in northing])
+    Z = np.asarray([(item - altitude[0]) for item in altitude])
 
-    B[i, 0] = X_interp[i]
-    B[i, 1] = Y_interp[i]
-    B[i, 2] = Z_interp[i]
-
-R, t = rigid_transform_3D(A, B)
-
-timestamps_pg = []
-tx = []
-ty = []
-tz = []
-qx = []
-qy = []
-qz = []
-qw = []
-
-with open(kf_file, 'r') as fp:
-    for line in fp:
-        print(line)
-        timestamps_pg.append(line.split(' ')[0])
-
-        t_ = np.matrix([[np.float(line.split(' ')[1])],
-                       [np.float(line.split(' ')[2])],
-                       [np.float(line.split(' ')[3])]])
-
-        t = R*t_
-
-        tx.append(t[0, 0])
-        ty.append(t[1, 0])
-        tz.append(t[2, 0])
-
-        qx.append(np.float(line.split(' ')[4]))
-        qy.append(np.float(line.split(' ')[5]))
-        qz.append(np.float(line.split(' ')[6]))
-        qw.append(np.float(line.split(' ')[7].split('\n')[0]))
+    X_interp = np.interp(timestamps_pg, timestamps_pvt, X)
+    Y_interp = np.interp(timestamps_pg, timestamps_pvt, Y)
+    Z_interp = np.interp(timestamps_pg, timestamps_pvt, Z)
 
 
+    # find 3D transformation https://nghiaho.com/?page_id=671
+    A = np.zeros((len(tx),3))
+    B = np.zeros((len(tx),3))
 
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-ax.plot(tx, ty, tz, label='ORB-pose-graph')
-plt.legend(loc='upper left')
-ax.plot(X_interp,Y_interp,Z_interp, label='GPS')
-plt.legend(loc='upper left')
-ax.set_xlabel('x ')
-ax.set_ylabel('y ')
-ax.set_zlabel('z ')
-ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
-ax.autoscale()
+    for i in range(len(tx)):
+        A[i, 0] = tx[i]
+        A[i, 1] = ty[i]
+        A[i, 2] = tz[i]
+
+        B[i, 0] = X_interp[i]
+        B[i, 1] = Y_interp[i]
+        B[i, 2] = Z_interp[i]
+
+    R, t = Rigid_Transform_3D(A, B)
+
+    timestamps_pg = []
+    tx = []
+    ty = []
+    tz = []
+    qx = []
+    qy = []
+    qz = []
+    qw = []
+
+    with open(kf_file, 'r') as fp:
+        for line in fp:
+            print(line)
+            timestamps_pg.append(line.split(' ')[0])
+
+            t_ = np.matrix([[np.float(line.split(' ')[1])],
+                           [np.float(line.split(' ')[2])],
+                           [np.float(line.split(' ')[3])]])
+
+            t = R*t_
+
+            tx.append(t[0, 0])
+            ty.append(t[1, 0])
+            tz.append(t[2, 0])
+
+            qx.append(np.float(line.split(' ')[4]))
+            qy.append(np.float(line.split(' ')[5]))
+            qz.append(np.float(line.split(' ')[6]))
+            qw.append(np.float(line.split(' ')[7].split('\n')[0]))
 
 
-plt.figure()
-plt.plot(tx, ty)
-plt.plot(X_interp, Y_interp)
-plt.plot(X_interp[0], Y_interp[0], 'bx', label='(GPS) start point')
-plt.show()
+
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+    ax.plot(tx, ty, tz, label='ORB-pose-graph')
+    plt.legend(loc='upper left')
+    ax.plot(X_interp,Y_interp,Z_interp, label='GPS')
+    plt.legend(loc='upper left')
+    ax.set_xlabel('x ')
+    ax.set_ylabel('y ')
+    ax.set_zlabel('z ')
+    ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
+    ax.autoscale()
 
 
-# with open('./pose_graph_test_orb.txt', 'w') as fp:
-#     for i in range(len(X_interp)):
-#         fp.write('%s %f %f %f %f %f %f %f \n' % (timestamps_pg[i], X_interp[i], Y_interp[i], Z_interp[i], qx[i], qy[i], qz[i], qw[i]))
+    plt.figure()
+    plt.plot(tx, ty)
+    plt.plot(X_interp, Y_interp)
+    plt.plot(X_interp[0], Y_interp[0], 'bx', label='(GPS) start point')
+    plt.show()
+
+
+    # with open('./pose_graph_test_orb.txt', 'w') as fp:
+    #     for i in range(len(X_interp)):
+    #         fp.write('%s %f %f %f %f %f %f %f \n' % (timestamps_pg[i], X_interp[i], Y_interp[i], Z_interp[i], qx[i], qy[i], qz[i], qw[i]))

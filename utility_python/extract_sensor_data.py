@@ -1,6 +1,9 @@
 import os
 import shutil
 
+# extracting zip file "2019_06_26_ExtractedTUKLData_Log123.zip"
+# then, separate data into different folder
+
 def move_file(path, sensor_type, slot_type):
 	if slot_type == "0":
 		savepath = os.path.join(path, "slot_"+slot_type)
@@ -17,6 +20,7 @@ def move_file(path, sensor_type, slot_type):
 	elif slot_type == "3":
 		savepath = os.path.join(path, "slot_"+slot_type)
 		shutil.move(os.path.join(data_path, name), os.path.join(savepath, name))
+
 
 if __name__ == "__main__":
 	data_path = "./2019_06_26_ExtractedTUKLData_Log123"

@@ -1,8 +1,8 @@
-# read and sparse Starfire 3000/6000 GPS csv file
-# msg rate 10 Hz
-
 import numpy as np
 import matplotlib.pyplot as plt
+
+# read and sparse Starfire 3000/6000 GPS csv file
+# msg rate 10 Hz
 
 def read_gps_data(csv_file_path):
     PVT_msg = []

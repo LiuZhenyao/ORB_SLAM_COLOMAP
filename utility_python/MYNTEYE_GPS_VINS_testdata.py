@@ -7,6 +7,8 @@ from numpy.linalg import inv
 import quaternion
 from scipy.interpolate import RegularGridInterpolator
 
+## TODO: VINS + GPS, I was trying to combine GPS and mynteye IMU, see if VINS can calibrate extrinsic parameter online
+## TODO: This idea is not success
 
 
 csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_2047_17_perceptionLog_StructSensorSF3000.csv"

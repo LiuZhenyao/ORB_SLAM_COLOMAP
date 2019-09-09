@@ -4,6 +4,8 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import os
 
+# read and sparse GPS data file "2019_09_06_0938_48_extractedPoseData_StructImageGroup.csv"
+
 df = pandas.read_csv('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/2019_06_26_1428_57_extractedPoseData_StructImageGroup.csv')
 
 data = df[df['senID']==5]

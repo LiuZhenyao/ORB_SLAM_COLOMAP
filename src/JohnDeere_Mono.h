@@ -12,7 +12,7 @@ namespace JohnDeere_Mono
     const std::string CAMERA_MODEL = "OPENCV"; //SIMPLE_RADIAL, SIMPLE_PINHOLE, PINHOLE, RADIAL, OPENCV
 
 
-    // This namespace only consider monocular case, choose the camera id you use
+    // This namespace only consider monocular case, choose the camera you use
     //      sensor 5, slot 0
     const float fx = 9.1246540196702676e+02; // in pixel
     const float fy = 9.0908065486055887e+02;

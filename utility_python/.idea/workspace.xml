@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="" />
+    <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gps_data_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/gps_data_analysis.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,7 +13,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -35,19 +45,19 @@
         <option value="$PROJECT_DIR$/extract_keyframe_img.py" />
         <option value="$PROJECT_DIR$/extract_sensor_data.py" />
         <option value="$PROJECT_DIR$/extract_timestamps.py" />
-        <option value="$PROJECT_DIR$/gps_data_analysis.py" />
         <option value="$PROJECT_DIR$/gps_data_pandas_read.py" />
         <option value="$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py" />
         <option value="$PROJECT_DIR$/KalmanFilter_simple.py" />
         <option value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
+        <option value="$PROJECT_DIR$/gps_data_analysis.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="85" />
-    <option name="y" value="112" />
+    <option name="y" value="140" />
     <option name="width" value="1389" />
-    <option name="height" value="879" />
+    <option name="height" value="881" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -65,6 +75,10 @@
               <item name="utility_python" type="b2602c69:ProjectViewProjectNode" />
               <item name="utility_python" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="utility_python" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -75,7 +89,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -89,7 +103,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.trajectory_analysis_ORBSLAM">
+  <component name="RunManager" selected="Python.gps_data_analysis">
     <configuration name="gps_data_analysis" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="utility" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,18 +198,18 @@
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.368306" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.18251365" />
       <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298279" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.22275335" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22275335" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39961758" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298279" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298279" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="8" side_tool="true" visible="true" weight="0.3298279" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3298279" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.15965582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -300,41 +314,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ref_images.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="811">
-          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ref_images_agri.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ref_images_field.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="43" selection-end-line="657" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pose_graph_test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pose_graph_test_orb.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ref_images.txt" />
+    <entry file="file://$PROJECT_DIR$/ref_images_agri.txt" />
+    <entry file="file://$PROJECT_DIR$/ref_images_field.txt" />
+    <entry file="file://$PROJECT_DIR$/pose_graph_test.txt" />
+    <entry file="file://$PROJECT_DIR$/pose_graph_test_orb.txt" />
     <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -342,13 +326,6 @@
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="237" selection-start-line="237" selection-end-line="237" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -361,6 +338,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

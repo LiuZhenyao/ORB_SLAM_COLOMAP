@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gps_data_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/gps_data_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/change_img_name_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/change_img_name_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" beforeDir="false" afterPath="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,9 +15,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1121">
+              <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/change_img_name_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="15" lean-forward="true" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/REMODE_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-342">
+              <caret lean-forward="true" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#446#1027#0" />
+                <element signature="e#1070#3757#0" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -39,17 +70,19 @@
         <option value="$PROJECT_DIR$/trajectroy_analysis_VINS.py" />
         <option value="$PROJECT_DIR$/add_left-.py" />
         <option value="$PROJECT_DIR$/Cam_transformation.py" />
-        <option value="$PROJECT_DIR$/change_img_name_2.py" />
         <option value="$PROJECT_DIR$/change_img_name.py" />
         <option value="$PROJECT_DIR$/create_mask.py" />
         <option value="$PROJECT_DIR$/extract_keyframe_img.py" />
         <option value="$PROJECT_DIR$/extract_sensor_data.py" />
         <option value="$PROJECT_DIR$/extract_timestamps.py" />
         <option value="$PROJECT_DIR$/gps_data_pandas_read.py" />
-        <option value="$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py" />
         <option value="$PROJECT_DIR$/KalmanFilter_simple.py" />
-        <option value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
         <option value="$PROJECT_DIR$/gps_data_analysis.py" />
+        <option value="$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py" />
+        <option value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
+        <option value="$PROJECT_DIR$/REMODE.py" />
+        <option value="$PROJECT_DIR$/change_img_name_2.py" />
+        <option value="$PROJECT_DIR$/REMODE_test.py" />
       </list>
     </option>
   </component>
@@ -87,7 +120,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/REMODE_test.py" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -103,7 +136,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.gps_data_analysis">
+  <component name="RunManager" selected="Python.REMODE_test">
+    <configuration name="REMODE_test" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="utility" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/REMODE_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="gps_data_analysis" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="utility" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -169,6 +223,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.gps_data_analysis" />
+      <item itemvalue="Python.REMODE_test" />
       <item itemvalue="Python.trajectory_analysis_ORBSLAM" />
       <item itemvalue="Python.trajectroy_analysis_VINS" />
     </list>
@@ -197,21 +252,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.18251365" />
       <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3298279" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22275335" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3298279" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22275335" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39961758" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298279" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298279" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="8" side_tool="true" visible="true" weight="0.3298279" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50054646" side_tool="true" weight="0.15869981" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3298279" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.15965582" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" visible="true" weight="0.3499044" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -242,13 +298,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/change_img_name.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/change_img_name_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/create_mask.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -294,16 +343,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KalmanFilter_simple.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -329,18 +368,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
+    <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="312" lean-forward="true" selection-start-line="312" selection-end-line="312" />
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps_data_analysis.py">
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/pyquaternion/quaternion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1442">
+          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remode_data_test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1121">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/text.depth.npy">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/SVO_ws/src/rpg_open_remode/test_data/depthmaps/scene_000.depth">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/text.depth">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/change_img_name_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="15" lean-forward="true" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REMODE_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#446#1027#0" />
+            <element signature="e#1070#3757#0" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

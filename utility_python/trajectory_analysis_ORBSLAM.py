@@ -8,17 +8,19 @@ import pandas
 import  gps_data_analysis
 from math import sqrt
 from numpy import *
-from math import sqrt
-
 
 
 def GeoRegistration_agri():
     # Geo-Registration: agricultural dataset from John Deere
-    df = pandas.read_csv('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/2019_06_26_1428_57_extractedPoseData_StructImageGroup.csv')
+    csv_path = '/home/shu/Downloads/JD/2019_09_06_0938_48_extractedPoseData_StructImageGroup.csv'
+    df = pandas.read_csv(csv_path)
     data = df[df['senID']==5]  # sensor 5
     x = data['x'].tolist()
     y = data['y'].tolist()
     z = data['z'].tolist()
+    # roll = data['roll'].tolist()
+    # pitch = data['pitch'].tolist()
+    # yaw = data['yaw'].tolist()
 
     # Sensor 5 to origin:
     R = np.matrix([[-0.6459666, -0.7385558, -0.1930348],
@@ -29,21 +31,33 @@ def GeoRegistration_agri():
                    [2.2556686],
                    [0.0602708]])
 
+    # Sensor 6 to origin
+    # R = np.matrix([[0.6333929, -0.7428564, 0.2167435],
+    #                [-0.2918709, -0.4887433, -0.8221565],
+    #                [0.7166762, 0.4574870, -0.5263847]])
+    #
+    # t = np.matrix([[-2.5567965],
+    #                [2.2590834],
+    #                [0.0541633]])
+
+
     X_ = []
     Y_ = []
     Z_ = []
+
     for i in range(len(x)):
         coor = np.matrix([[x[i]],
                           [y[i]],
                           [z[i]]])
         # origin to sensor 5
-        # coor_s = R.transpose() * coor - R.transpose() * t
-        coor_s = coor
+        coor_s = R.transpose() * coor - R.transpose() * t
+        # coor_s = coor
 
         X_.append(coor_s[0, 0])
         Y_.append(coor_s[1, 0])
         Z_.append(coor_s[2, 0])
 
+    # set first point as origin
     X = [item - X_[0] for item in X_]
     Y = [item - Y_[0] for item in Y_]
     Z = [item - Z_[0] for item in Z_]

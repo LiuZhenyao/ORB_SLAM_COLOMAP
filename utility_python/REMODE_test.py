@@ -127,46 +127,46 @@ ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
 ax.autoscale()
 plt.show()
 
-    # img_list = os.listdir("/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/images")
-    # img_list.sort()
-    #
-    # with open('./remode_data_test.txt', 'w') as fp:
-    #     for i in range(0, 335):
-    #         fp.write('%s %f %f %f %f %f %f %f \n' % (img_list[i], X[i], Y[i], Z[i], qx[i], qy[i], qz[i], qw[i]))
+img_list = os.listdir("/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/images")
+img_list.sort()
+
+with open('./remode_data_test.txt', 'w') as fp:
+    for i in range(0, 335):
+        fp.write('%.4f %f %f %f %f %f %f %f \n' % (timestamps[i], X[i], Y[i], Z[i], qx[i], qy[i], qz[i], qw[i]))
 
 
-def calculate_disparity_image():
-
-    path_left = '/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/orb_slot_0'
-    path_right = '/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/orb_slot_1'
-    img_list_L = os.listdir(path_left)
-    img_list_L.sort()
-    img_list_R = os.listdir(path_right)
-    img_list_R.sort()
-
-    for i in range(len(img_list_L)):
-        assert img_list_L[i] == img_list_R[i]
-
-        imgL = cv2.imread(os.path.join(path_left, img_list_L[i]), 0)
-        imgR = cv2.imread(os.path.join(path_right, img_list_R[i]), 0)
-        win_size = 5
-        min_disp = -1
-        max_disp = 63  # min_disp * 9
-        num_disp = max_disp - min_disp  # Needs to be divisible by 1
-        stereo = cv2.StereoSGBM_create(minDisparity=min_disp,
-                                       numDisparities=num_disp,
-                                       blockSize=5,
-                                       uniquenessRatio=5,
-                                       speckleWindowSize=5,
-                                       speckleRange=5,
-                                       disp12MaxDiff=1,
-                                       P1=8 * 3 * win_size ** 2,  # 8*3*win_size**2,
-                                       P2=32 * 3 * win_size ** 2)  # 32*3*win_size**2)
-        disparity = stereo.compute(imgL, imgR)
-        # disparity[disparity == -32] = 1
-        disparity[disparity == 0] = 1
-        plt.imshow(disparity, 'gray')
-        plt.show()
+# def calculate_disparity_image():
+#
+#     path_left = '/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/orb_slot_0'
+#     path_right = '/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/orb_slot_1'
+#     img_list_L = os.listdir(path_left)
+#     img_list_L.sort()
+#     img_list_R = os.listdir(path_right)
+#     img_list_R.sort()
+#
+#     for i in range(len(img_list_L)):
+#         assert img_list_L[i] == img_list_R[i]
+#
+#         imgL = cv2.imread(os.path.join(path_left, img_list_L[i]), 0)
+#         imgR = cv2.imread(os.path.join(path_right, img_list_R[i]), 0)
+#         win_size = 5
+#         min_disp = -1
+#         max_disp = 63  # min_disp * 9
+#         num_disp = max_disp - min_disp  # Needs to be divisible by 1
+#         stereo = cv2.StereoSGBM_create(minDisparity=min_disp,
+#                                        numDisparities=num_disp,
+#                                        blockSize=5,
+#                                        uniquenessRatio=5,
+#                                        speckleWindowSize=5,
+#                                        speckleRange=5,
+#                                        disp12MaxDiff=1,
+#                                        P1=8 * 3 * win_size ** 2,  # 8*3*win_size**2,
+#                                        P2=32 * 3 * win_size ** 2)  # 32*3*win_size**2)
+#         disparity = stereo.compute(imgL, imgR)
+#         # disparity[disparity == -32] = 1
+#         disparity[disparity == 0] = 1
+#         plt.imshow(disparity, 'gray')
+#         plt.show()
 
         # np.savetxt(os.path.join('/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/depthmaps', img_list_L[i].replace('png','depth')), disparity)
 

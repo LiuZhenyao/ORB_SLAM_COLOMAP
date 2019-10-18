@@ -4,7 +4,7 @@ int main() {
 
     std::cout << "MAIN FUNCTION RUNING" << std::endl;
 
-    // delete old output file
+    // delete old *.txt file
     system("exec rm -r /home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/output/*");
 
     // testFunc();

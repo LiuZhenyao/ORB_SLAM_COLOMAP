@@ -3,7 +3,7 @@ import os
 # SLAM+COLMAP: this is used to re-name the keyframes as a sequence format like IMG000001.png, IMG000002.png ...
 # if there was no index number in the image name
 
-path = "/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/orb_slot_1/"
+path = "/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/imgs/"
 img_list = os.listdir(path)
 img_list.sort()
 index_num = 1

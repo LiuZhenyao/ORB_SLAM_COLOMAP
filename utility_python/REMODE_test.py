@@ -65,13 +65,18 @@ timestamps = data['time'].tolist()
 timestamps.sort()
 
 # Sensor 5 to origin:
-R = np.matrix([[-0.6459666, -0.7385558, -0.1930348],
-               [-0.2928724, 0.4732986, -0.8307913],
-               [0.7049489, -0.4801289, -0.5220377]])
+R = np.matrix([[0.7049489,    0.6459666,    0.2928724],
+               [-0.4801289,    0.7385558,   -0.4732986],
+               [-0.5220377,    0.1930348,    0.8307913]])
 
-t = np.matrix([[2.6655631],
-               [2.2556686],
-               [0.0602708]])
+t = np.matrix([[2.34],
+               [0.93],
+               [2.42]])
+
+T = np.matrix([[0.7049489,    0.6459666,    0.2928724,    2.3400000],
+               [-0.4801289,    0.7385558,   -0.4732986,    0.9300000],
+               [-0.5220377,    0.1930348,    0.8307913,    2.4200000],
+               [0.0000000,    0.0000000,    0.0000000,    1.0000000]])
 
 X_ = []
 Y_ = []
@@ -80,17 +85,22 @@ qx = []
 qy = []
 qz = []
 qw = []
+
+
 for i in range(len(x)):
     # define instant GPS (it is also origin) coordinates and orientations
-    coor_gps = np.matrix([[x[i]],
-                      [y[i]],
-                      [z[i]]])
+    coor_gps = np.matrix([[np.float(x[i])],
+                      [np.float(y[i])],
+                      [np.float(z[i])],
+                      [1.0]])
+
     R_gps = EulerAngles_to_Rotation(roll[i], pitch[i], yaw[i])
 
     # transformation from origin to sensor (sensor 5 ot 6)
     coor_s = inv(R) * coor_gps - inv(R) * t
     # coor_s = coor_gps
     R_s = inv(R) * R_gps
+    # coor_s = inv(T) * coor_gps
 
     #
     X_.append(coor_s[0, 0])
@@ -107,14 +117,14 @@ X = [item - X_[0] for item in X_]
 Y = [item - Y_[0] for item in Y_]
 Z = [item - Z_[0] for item in Z_]
 
-plt.figure()
-plt.plot(X_, Y_, label='Sensor')
-plt.plot(x, y, label='GPS')
-plt.title('Trajectory of GPS (local frame)')
-plt.xlabel('x [m]')
-plt.ylabel('y [m]')
-plt.legend()
-plt.grid(True)
+# plt.figure()
+# plt.plot(X_, Y_, label='Sensor')
+# plt.plot(x, y, label='GPS')
+# plt.title('Trajectory of GPS (local frame)')
+# plt.xlabel('x [m]')
+# plt.ylabel('y [m]')
+# plt.legend()
+# plt.grid(True)
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
@@ -127,7 +137,7 @@ ax.set_title('3D trajectory of GPS and pose graph (local frame of GPS)')
 ax.autoscale()
 plt.show()
 
-img_list = os.listdir("/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/images")
+img_list = os.listdir("/home/shu/SVO_ws/src/rpg_open_remode/test_data_agri/imgs")
 img_list.sort()
 
 with open('./remode_data_test.txt', 'w') as fp:

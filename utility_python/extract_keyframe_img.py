@@ -4,28 +4,23 @@ import cv2
 # ORB-SLAM + COLMAP:
 #   as long as ORB-SLAM save the pose graph as KeyFrameTrajectory.txt, we extract corresponding keyframes
 
-keyframe_file_path = '/home/shu/OpensourceProject/MYNT-ORBSLAM2_ws/src/MYNT-EYE-ORB-SLAM2-Sample/pose_graph/KeyFrameTrajectory.txt'
+keyframe_file_path = '/home/shu/dense_orbslam_ws/ORB_SLAM2_REMODE/backup_trajectory/KeyFrameTrajectory_04.txt'
 timestemps = []
 
-# in case the timestamps in different decimals
 with open(keyframe_file_path, 'r') as fp:
     for line in fp:
-        # print (line)
         tmp = line.split(' ')[0]
-        # print (tmp)
-        tmp2 = tmp.split('.')[0] + tmp.split('.')[1]
-        tmp3 = tmp2 + '0000'
-        timestemps.append(tmp3)
-        # print (timestemps)
+        timestemps.append(tmp)
 
-# img_file_path = '/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_5/orb_slot_0'
-img_file_path = '/home/shu/kalibr_workspace/output_vins_data2/cam0'
+
+img_file_path = '/home/shu/Downloads/Rosario_2019/dataset/04/sequence04/zed'
 img_list = os.listdir(img_file_path)
 for name in img_list:
     for ts in timestemps:
-        if name.split('.')[0] == ts:
+        if name.split('_')[0] == 'left' and name.split('_')[1] == (ts+".png"):
             img = cv2.imread(os.path.join(img_file_path, name))
-            cv2.imwrite(os.path.join('/home/shu/Downloads/COLMAP_TEST/testfromORBSLAM2/imgs', name), img)
+            cv2.imwrite(os.path.join(
+                '/home/shu/Downloads/Rosario_2019/workstation_template_04/imgs', name.split('_')[1]), img)
 
-os.chdir('/home/shu/Downloads/COLMAP_TEST/testfromORBSLAM2')
-os.system('python change_img_name.py')
+# os.chdir('/home/shu/Downloads/COLMAP_TEST/testfromORBSLAM2')
+# os.system('python change_img_name.py')

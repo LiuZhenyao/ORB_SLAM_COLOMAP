@@ -4,7 +4,7 @@ import numpy as np
 
 # SLAM+COLMAP: for agricultural imagery, you have to mask the vehicle during using COLMAP (offline dense SFM)
 
-img_path = "/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_6/orb_slot_1/15347732073177.png"
+img_path = "/home/shu/Downloads/Rosario_2019/sequence04/zed/left_1514557628.298000.png"
 img = cv2.imread(img_path)
 
 ix = []
@@ -45,23 +45,23 @@ b = iy[0] - a * ix[0]
 for y in range(img.shape[0]):
     for x in range(img.shape[1]):
         if y >= a*x+b:
-            img[y, x] = 0
-        elif y < a*x+b:
             img[y, x] = 255
+        elif y < a*x+b:
+            img[y, x] = 0
 
 # cv2.namedWindow('image')
 # cv2.imshow('image',img)
 # cv2.waitKey(0)
 
 # save the mask
-cv2.imwrite("/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_6/mask_sensor6_slot_1.png", img)
+cv2.imwrite("./mask.png", img)
 
 # using mask to create masked imagery
-path = '/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_6/orb_slot_1'
-path2 = '/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_6/orb_slot_1_masked'
+path = '/home/shu/Downloads/Rosario_2019/workstation_template/imgs'
+path2 = '/home/shu/Downloads/Rosario_2019/workstation_template/mask_img'
 img_list = os.listdir(path)
 
-mask = cv2.imread('/home/shu/Downloads/JD/2019_06_26_ExtractedTUKLData_Log123/Sensor_6/mask_sensor6_slot_1.png')
+mask = cv2.imread('./mask.png')
 
 for name in img_list:
     img = cv2.imread(os.path.join(path, name))

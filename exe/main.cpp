@@ -5,7 +5,7 @@ int main() {
     std::cout << "MAIN FUNCTION RUNING" << std::endl;
 
     // delete old *.txt file
-    system("exec rm -r /home/shu/fangwenSHU/Monocular-SLAM-based-on-MYNTEYE/output/*");
+    system("exec rm -r /home/shu/Downloads/Rosario_2019/ORB_SLAM_COLOMAP/output/*");
 
     // testFunc();
     // vins_PoseGraph_reader::loadPoseGraph();

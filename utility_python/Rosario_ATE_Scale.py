@@ -53,40 +53,53 @@ def align(model, data):
     return rot, trans, trans_error, s
 
 # GPS data
-# csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_12_0955_54_perceptionLog_StructSensorSF3000.csv"
-# csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_1100_45_perceptionLog_StructSensorSF3000.csv"
-csv_file_path = "/home/shu/Desktop/SF3000-recordings/2019_07_15_1102_46_perceptionLog_StructSensorSF3000.csv"
-PVT_msg, INS_msg, IMU_msg = gps_data_analysis.read_gps_data(csv_file_path)
-timestamps_pvt, easting, northing, altitude, velocityEasting, velocityNorthing, velocityUp = gps_data_analysis.sparse_PVT_msg(PVT_msg)
-timestamps_pvt = np.asarray(timestamps_pvt)
-X = np.asarray([item for item in easting])
-Y = np.asarray([item for item in northing])
-Z = np.asarray([item for item in altitude])
+gps_gt_path = "/home/shu/Downloads/Rosario_2019/dataset/03/gt.txt"
+timestamps_gps = []
+Xgps = []
+Ygps = []
+Zgps = []
+Xc = []
+Yc = []
+Zc = []
+with open(gps_gt_path, 'r') as fp:
+    for line in fp:
+        timestamps_gps.append(np.float(line.split(' ')[0]))
 
-# Pose graph of ORB-SLAM2
-kf_file = '/home/shu/dense_orbslam_ws/ORB_SLAM2/KeyFrameTrajectory_3.txt'
+        Xgps.append(np.float(line.split(' ')[1]))
+        Ygps.append(np.float(line.split(' ')[2]))
+        Zgps.append(np.float(line.split(' ')[3]))
+
+
+        gps_center = np.matrix([[np.float(line.split(' ')[1])],
+                         [np.float(line.split(' ')[2])],
+                         [np.float(line.split(' ')[3])],
+                         [1.0]])
+
+        # cam_center = T_imu_2_cam*(T_base_2_imu*(inv(T_base_2_gps)*gps_center))
+        cam_center = gps_center
+
+        Xc.append(cam_center[0, 0])
+        Yc.append(cam_center[1, 0])
+        Zc.append(cam_center[2, 0])
+
+pose_graph_file = '/home/shu/dense_orbslam_ws/ORB_SLAM2_REMODE/backup_trajectory/KeyFrameTrajectory_03.txt'
 timestamps_pg = []
 tx = []
 ty = []
 tz = []
-with open(kf_file, 'r') as fp:
+with open(pose_graph_file, 'r') as fp:
     for line in fp:
-        timestamps_pg.append(line.split(' ')[0])
+        timestamps_pg.append(np.float(line.split(' ')[0]))
         tx.append(np.float(line.split(' ')[1]))
         ty.append(np.float(line.split(' ')[2]))
         tz.append(np.float(line.split(' ')[3]))
 
-# Interpolate corresponding GPS coordinates according to timestamps
-X_interp_ = np.interp(timestamps_pg, timestamps_pvt, X)
-Y_interp_ = np.interp(timestamps_pg, timestamps_pvt, Y)
-Z_interp_ = np.interp(timestamps_pg, timestamps_pvt, Z)
-# Re-center
-X_interp = [(item - X_interp_[0]) for item in X_interp_]
-Y_interp = [(item - Y_interp_[0]) for item in Y_interp_]
-Z_interp = [(item - Z_interp_[0]) for item in Z_interp_]
+X_interp = np.interp(timestamps_pg, timestamps_gps, Xc)
+Y_interp = np.interp(timestamps_pg, timestamps_gps, Yc)
+Z_interp = np.interp(timestamps_pg, timestamps_gps, Zc)
 
 # Define two matrix
-# GPS
+# GPS, Ground truth
 first_xyz = np.matrix([[value for value in X_interp],
                        [value for value in Y_interp],
                        [value for value in Z_interp]])
@@ -95,10 +108,18 @@ second_xyz = np.matrix([[value for value in tx],
                        [value for value in ty],
                        [value for value in tz]])
 
-rot,trans,trans_error,scale = align(second_xyz,first_xyz)
+rot,trans,trans_error,scale = align(second_xyz, first_xyz)
 
 second_xyz_aligned = scale * rot * second_xyz + trans
 
+print "compared_pose_pairs %d pairs" % (len(trans_error))
+
+print "absolute_translational_error.rmse %f m" % numpy.sqrt(numpy.dot(trans_error, trans_error) / len(trans_error))
+print "absolute_translational_error.mean %f m" % numpy.mean(trans_error)
+print "absolute_translational_error.median %f m" % numpy.median(trans_error)
+print "absolute_translational_error.std %f m" % numpy.std(trans_error)
+print "absolute_translational_error.min %f m" % numpy.min(trans_error)
+print "absolute_translational_error.max %f m" % numpy.max(trans_error)
 
 # Plot
 x = []

@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23c1f46a-502b-4ff2-af59-c0963f0e9c81" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.vscode/c_cpp_properties.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exe/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../exe/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/cameras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/cameras.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/images.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../output/images.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/JohnDeere_Mono.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/mynteye.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/mynteye.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pose_graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../src/pose_graph.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pose_graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/../src/pose_graph.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REMODE_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/REMODE_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/change_img_name_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/change_img_name_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_mask.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_mask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluate_ATE.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate_ATE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract_keyframe_img.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_keyframe_img.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,12 +23,39 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/extract_keyframe_img.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rosario_geo_register.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+              <caret line="81" column="28" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rosario_ATE_Scale.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="142" selection-start-line="142" selection-end-line="154" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Height_profile_pointcloud.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="38" column="16" lean-forward="true" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -50,21 +87,25 @@
         <option value="$PROJECT_DIR$/gps_data_pandas_read.py" />
         <option value="$PROJECT_DIR$/KalmanFilter_simple.py" />
         <option value="$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py" />
-        <option value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
         <option value="$PROJECT_DIR$/REMODE.py" />
         <option value="$PROJECT_DIR$/gps_data_analysis.py" />
         <option value="$PROJECT_DIR$/remode_data_test.txt" />
         <option value="$PROJECT_DIR$/change_img_name_2.py" />
         <option value="$PROJECT_DIR$/REMODE_test.py" />
         <option value="$PROJECT_DIR$/extract_keyframe_img.py" />
+        <option value="$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py" />
+        <option value="$PROJECT_DIR$/evaluate_ATE.py" />
+        <option value="$PROJECT_DIR$/Rosario_geo_register.py" />
+        <option value="$PROJECT_DIR$/Rosario_ATE_Scale.py" />
+        <option value="$PROJECT_DIR$/Height_profile_pointcloud.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="85" />
-    <option name="y" value="140" />
-    <option name="width" value="1389" />
-    <option name="height" value="881" />
+    <option name="x" value="880" />
+    <option name="y" value="252" />
+    <option name="width" value="1387" />
+    <option name="height" value="880" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -94,7 +135,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/REMODE_test.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Rosario_ATE_Scale.py" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -110,8 +151,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.REMODE_test">
-    <configuration name="REMODE_test" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Rosario_ATE_Scale">
+    <configuration name="Rosario" type="PythonConfigurationType" factoryName="Python">
       <module name="utility" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -123,7 +164,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/REMODE_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Rosario_geo_register.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,7 +173,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="gps_data_analysis" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="Rosario_ATE_Scale" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="utility" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,7 +185,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gps_data_analysis.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Rosario_ATE_Scale.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -196,8 +237,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.gps_data_analysis" />
-      <item itemvalue="Python.REMODE_test" />
+      <item itemvalue="Python.Rosario" />
+      <item itemvalue="Python.Rosario_ATE_Scale" />
       <item itemvalue="Python.trajectory_analysis_ORBSLAM" />
       <item itemvalue="Python.trajectroy_analysis_VINS" />
     </list>
@@ -225,26 +266,46 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1204" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.18251365" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.18231441" />
       <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298279" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.11376673" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.38237965" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39961758" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298279" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298279" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50054646" side_tool="true" weight="0.15869981" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3298279" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" weight="0.36042064" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32970026" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" visible="true" weight="0.35967302" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994012" visible="true" weight="0.18231441" />
+      <window_info id="Structure" order="1" sideWeight="0.5005988" side_tool="true" weight="0.24808744" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3298279" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.19891009" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39961758" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3298279" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3298279" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50054646" side_tool="true" weight="0.15869981" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32970026" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49945354" weight="0.35967302" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mask_sensor6.png" />
@@ -300,30 +361,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ref_images.txt" />
-    <entry file="file://$PROJECT_DIR$/ref_images_agri.txt" />
     <entry file="file://$PROJECT_DIR$/ref_images_field.txt" />
     <entry file="file://$PROJECT_DIR$/pose_graph_test.txt" />
     <entry file="file://$PROJECT_DIR$/pose_graph_test_orb.txt" />
-    <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/pyquaternion/quaternion.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1442">
@@ -361,34 +401,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/REMODE_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="164" column="42" selection-start-line="164" selection-start-column="42" selection-end-line="164" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#446#1027#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="163" column="22" lean-forward="true" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/remode_data_test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5346">
-          <caret line="26" column="67" selection-start-line="26" selection-start-column="67" selection-end-line="26" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/remode_data_test.txt" />
     <entry file="file://$PROJECT_DIR$/change_img_name_2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -399,10 +412,111 @@
     <entry file="file://$PROJECT_DIR$/change_img_name.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/mask.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/extract_keyframe_img.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" column="62" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/REMODE_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2622">
+          <caret line="164" column="42" selection-start-line="164" selection-start-column="42" selection-end-line="164" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#446#1027#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trajectroy_analysis_VINS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MYNTEYE_GPS_VINS_testdata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ref_images_agri.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="395" column="45" lean-forward="true" selection-start-line="395" selection-start-column="45" selection-end-line="395" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trajectory_analysis_ORBSLAM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2413">
+          <caret line="127" column="39" lean-forward="true" selection-start-line="127" selection-start-column="39" selection-end-line="127" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evaluate_ATE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rosario_geo_register.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+          <caret line="81" column="28" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rosario_ATE_Scale.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="142" selection-start-line="142" selection-end-line="154" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/dist-packages/matplotlib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="1717" selection-start-line="1717" selection-end-line="1717" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Height_profile_pointcloud.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="38" column="16" lean-forward="true" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
